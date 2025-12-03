@@ -1,0 +1,39 @@
+@layer components {
+  /** normal **/
+  .btn {
+    @apply inline-flex justify-center items-center;
+    @apply text-center whitespace-nowrap;
+  }
+
+  /** modifiers **/
+
+  // state
+  .btn.disabled {
+    @apply cursor-default opacity-40;
+  }
+
+  /** extra **/
+  .btn.wide {
+    @apply min-w-[100px] sm:min-w-[120px] md:min-w-[140px] lg:min-w-[200px];
+  }
+
+  .btn.wider {
+    @apply min-w-[120px] sm:min-w-[140px] md:min-w-[160px] lg:min-w-[240px];
+  }
+
+  .btn.outlined {
+    @apply border;
+
+    // theme
+    &.primary {
+      @apply border-primary;
+      @apply text-primary;
+    }
+  }
+
+  .btn:not(.outlined) {
+    &.primary {
+      @apply bg-primary;
+    }
+  }
+}

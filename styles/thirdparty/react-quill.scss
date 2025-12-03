@@ -1,0 +1,152 @@
+@import '~react-quill/dist/quill.snow.css';
+
+.quill {
+    font-family: 'Wanted Sans Variable', sans-serif;
+  .ql-container {
+    @apply px-2 h-auto min-h-[200px];
+    @apply h-auto min-h-[200px] md:min-h-[200px];
+  }
+
+  .ql-toolbar.ql-snow {
+    .ql-formats {
+      @apply flex items-center flex-wrap mr-0;
+
+      & > .ql-size,
+      .ql-align,
+      .ql-strike,
+      .ql-background,
+      .ql-image,
+      .ql-list,
+      .ql-script[value='super'],
+      .ql-indent[value='+1'],
+      .ql-direction {
+        @apply sm:mr-3;
+      }
+
+      .ql-picker {
+        @apply h-fit;
+
+        &.ql-size {
+          .ql-picker-label[data-value='huge'],
+          .ql-picker-item[data-value='huge'] {
+            @apply before:content-['제목1'];
+
+            &.ql-picker-item::before {
+              @apply bold-28;
+            }
+          }
+
+          .ql-picker-label[data-value='large'],
+          .ql-picker-item[data-value='large'] {
+            @apply before:content-['제목2'];
+
+            &.ql-picker-item::before {
+              @apply bold-24;
+            }
+          }
+
+          .ql-picker-label[data-value='small'],
+          .ql-picker-item[data-value='small'] {
+            @apply before:content-['제목3'];
+
+            &.ql-picker-item::before {
+              @apply bold-20;
+            }
+          }
+
+          .ql-picker-label,
+          .ql-picker-item {
+            @apply before:content-['내용'];
+
+            &.ql-picker-item::before {
+              @apply reg-14;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ql-editor {
+    font-family: 'Wanted Sans Variable', sans-serif;
+    //apply는 utility.style.scss 참조
+    h1 {
+      @apply bold-28;
+    }
+
+    h2 {
+      @apply bold-24;
+    }
+
+    h3 {
+      @apply bold-20;
+    }
+
+    p {
+      @apply reg-14;
+
+      & span.ql-size-huge {
+        @apply bold-28;
+      }
+
+      & span.ql-size-large {
+        @apply bold-24;
+      }
+
+      & span.ql-size-small {
+        @apply bold-20;
+      }
+    }
+
+    img {
+    display: block;
+    margin: 0.5rem auto;
+    max-width: 100%;
+    height: auto;
+    }
+
+    &.ql-blank::before {
+      font-style: normal;
+      @apply typo-body5 text-grey2;
+    }
+    ol,
+    ul {
+      @apply ml-0 pl-0;
+    }
+
+    li {
+      @apply reg-14 ;
+      padding-left:0px !important;
+      margin-bottom:3px;  
+    }
+
+    li::before {
+      margin-left:-6px !important;
+      margin-right:2px !important;
+    }
+
+    /* Quill indent levels */
+    li.ql-indent-1 {
+      padding-left: 10px !important;; // 2단계
+    }
+
+    li.ql-indent-2 {
+      padding-left: 20px !important; // 3단계
+    }
+
+    li.ql-indent-3 {
+      padding-left: 30px !important;
+    }
+
+    li.ql-indent-4 {
+      padding-left: 40px !important;
+    }
+
+    //5단계 이상 무효화화
+    li[class*="ql-indent-"]:not(.ql-indent-1):not(.ql-indent-2):not(.ql-indent-3):not(.ql-indent-4) {
+      padding-left: 40px !important;
+    }
+
+
+  }
+}

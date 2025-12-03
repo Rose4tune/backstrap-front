@@ -1,0 +1,20 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.slick-list {
+  @apply h-full;
+}
+
+.slick-track {
+  @apply h-full leading-[0];
+}
+
+.slick-slide {
+  & div {
+    outline: none;
+  }
+
+  & > div {
+    @apply w-full h-full;
+  }
+}

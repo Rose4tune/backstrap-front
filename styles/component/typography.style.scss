@@ -1,0 +1,58 @@
+@layer components {
+  .typo-header1 {
+    @apply text-4xl;
+  }
+
+  .typo-header2 {
+    @apply text-[32px];
+  }
+
+  .typo-header3 {
+    @apply text-3xl;
+  }
+
+  .typo-body1 {
+    @apply text-[25px];
+  }
+
+  .typo-body2 {
+    @apply text-2xl;
+  }
+
+  .typo-body3 {
+    @apply text-xl;
+  }
+
+  .typo-body4 {
+    @apply text-lg;
+  }
+
+  .typo-body5 {
+    @apply text-base;
+  }
+
+  .typo-body6 {
+    @apply text-sm;
+  }
+
+  .typo-body7 {
+    @apply text-[13px];
+  }
+
+  .typo-body8 {
+    @apply text-[11px];
+  }
+
+  .typo-body9 {
+    @apply text-tiny;
+  }
+
+  .typo-body10 {
+    @apply text-tiny;
+    // @apply scale-[0.7] origin-left;
+  }
+
+  .typo-body-post {
+    @apply text-base leading-snug;
+  }
+}

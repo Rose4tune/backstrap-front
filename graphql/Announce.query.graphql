@@ -1,0 +1,10 @@
+query Announces($input: AnnounceFetchDtoInput!) {
+  announcesByCursor(fetchDto: $input) {
+    cursor
+    page
+    totalCount
+    data {
+      ...AnnounceBase
+    }
+  }
+}

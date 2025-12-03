@@ -1,0 +1,15 @@
+mutation RegisterTimeTable($input: TimeTableRegisterDtoInput) {
+  registerTimeTable(registerDto: $input) {
+    ...TimeTableBase
+  }
+}
+
+mutation EditTimeTable($input: TimeTableEditDtoInput) {
+  editTimeTable(editDto: $input) {
+    ...TimeTableBase
+  }
+}
+
+mutation DeleteTimeTable($uuid: String) {
+  deleteTimeTable(uuid: $uuid)
+}

@@ -1,0 +1,5 @@
+query FAGroups {
+  FAGroups {
+    ...FAGroupSummary
+  }
+}

@@ -1,0 +1,32 @@
+.base-form-section {
+}
+
+.base-form-row {
+  align-items: center;
+  margin: 38px 0;
+
+  // @media screen and (max-width: $sm) {
+  //   margin: 26px 0;
+  // }
+}
+
+.base-form-field {
+  height: 50px;
+
+  .label {
+    color: #8e8e8f;
+    text-align: right;
+    min-width: 80px;
+    margin-right: 30px;
+  }
+}
+
+.base-form-control {
+  align-items: center;
+
+  .helper {
+    .count {
+      color: #4a4a4c;
+    }
+  }
+}

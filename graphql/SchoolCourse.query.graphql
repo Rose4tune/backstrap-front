@@ -1,0 +1,10 @@
+query SchoolCourses($input: SchoolCourseFetchDtoInput) {
+  schoolCoursesByCursor(fetchDto: $input) {
+    cursor
+    data {
+      ...BaseSchoolCourse
+    }
+    page
+    totalCount
+  }
+}

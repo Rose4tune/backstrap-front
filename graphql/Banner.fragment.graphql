@@ -1,0 +1,21 @@
+fragment BannerBase on BannerViewDto {
+  uuid
+}
+
+fragment BannerSummary on BannerViewDto {
+  ...BannerBase
+
+  title
+  description
+  imageUrl
+  action
+  actionValue
+  backgroundColor
+  indexBackgroundColor
+  indexColor
+  indexStrokeColor
+}
+
+fragment BannerDetail on BannerViewDto {
+  ...BannerSummary
+}

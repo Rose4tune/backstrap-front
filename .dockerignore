@@ -1,0 +1,12 @@
+# Node.js 관련
+node_modules
+npm-debug.log
+.yarn
+.yarn.lock
+yarn-error.log
+
+.env
+.env.development
+.env.production
+.env.*
+.dockerignore

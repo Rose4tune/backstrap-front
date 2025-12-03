@@ -1,0 +1,28 @@
+fragment RoomBase on RoomEntityView {
+  uuid
+}
+
+fragment RoomSummary on RoomEntityView {
+  ...RoomBase
+
+  isAnonymous
+
+  partner {
+    uuid
+    accountNumber
+    name
+    profileImage
+    profileImageUrl
+    school {
+      name
+    }
+  }
+
+  lastMessage {
+    ...UserMessageSummary
+  }
+}
+
+fragment RoomDetail on RoomEntityView {
+  ...RoomSummary
+}

@@ -1,0 +1,5 @@
+mutation EditVote($input: VoteEditDtoInput!) {
+  editVote(editDto: $input) {
+    ...VoteBase
+  }
+}

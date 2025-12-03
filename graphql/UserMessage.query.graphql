@@ -1,0 +1,12 @@
+query UnreadMessageCount {
+  unreadMessageCount
+}
+
+query UserMessages($input: UserMessageFetchDtoInput!) {
+  userMessagesByCursor(fetchDto: $input) {
+    cursor
+    data {
+      ...UserMessageSummary
+    }
+  }
+}

@@ -1,0 +1,15 @@
+query HomeData {
+  banners {
+    ...BannerSummary
+    action
+    actionValue
+    description
+    imageUrl
+    indexColor
+    indexBackgroundColor
+    indexStrokeColor
+    uuid
+    createdDate
+    title
+  }
+}

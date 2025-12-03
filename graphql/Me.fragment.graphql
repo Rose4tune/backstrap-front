@@ -1,0 +1,17 @@
+fragment MeSummary on UserEntityView {
+  uuid
+  accountNumber
+  email
+  name
+  realName
+  provider
+  profileImage
+  profileImageUrl
+  school {
+    name
+    uuid
+  }
+  schoolVerificationStatus
+  studentType
+  isAdmin
+}

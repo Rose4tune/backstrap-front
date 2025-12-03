@@ -1,0 +1,14 @@
+query Review($uuid: String!) {
+  review(reviewUuid: $uuid) {
+    ...ReviewDetail
+  }
+}
+
+query Reviews($input: ReviewFetchDtoInput!) {
+  reviewsByCursor(fetchDto: $input) {
+    cursor
+    data {
+      ...ReviewSummary
+    }
+  }
+}

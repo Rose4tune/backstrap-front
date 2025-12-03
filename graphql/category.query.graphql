@@ -1,0 +1,14 @@
+query Categories(
+  $parentUuid: String,
+  $schoolTypeUuid: String,
+) {
+  categories(
+    parentUuid: $parentUuid,
+    schoolTypeUuid: $schoolTypeUuid,
+  ) {
+    uuid
+    name
+    code
+    isScraped
+  }
+}

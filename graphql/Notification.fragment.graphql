@@ -1,0 +1,17 @@
+fragment NotificationBase on NotificationViewDto {
+  uuid
+}
+
+fragment NotificationSummary on NotificationViewDto {
+  ...NotificationBase
+
+  title
+  actionUrl
+  iconUrl
+}
+
+fragment NotificationDetail on NotificationViewDto {
+  ...NotificationSummary
+
+  content
+}

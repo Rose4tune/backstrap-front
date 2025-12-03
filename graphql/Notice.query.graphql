@@ -1,0 +1,16 @@
+query Notice($uuid: String) {
+  notice(uuid: $uuid) {
+    ...NoticeData
+  }
+}
+
+query NoticesList($input: NoticeFetchDtoInput) {
+  noticesByCursor(fetchDto: $input) {
+    cursor
+    totalCount
+    data {
+      ...NoticeData
+    }
+    page
+  }
+}

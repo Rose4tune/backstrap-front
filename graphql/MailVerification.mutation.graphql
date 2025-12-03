@@ -1,0 +1,20 @@
+mutation SendVerificationCode($email: String!) {
+  sendVerificationCode(email: $email) {
+    uuid
+    verifiedAt
+    expiredAt
+  }
+}
+
+mutation verifyCode($email: String!, $code: String!) {
+  verifyCode(email: $email, code: $code) {
+    uuid
+    email
+    verifiedAt
+    expiredAt
+  }
+}
+
+mutation SendResetPasswordEmail($email: String!, $name: String!) {
+  sendResetPasswordEmail(email: $email, name: $name)
+}

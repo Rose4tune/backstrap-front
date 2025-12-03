@@ -1,0 +1,14 @@
+.banner-slider {
+  :global(.slick-slide) {
+    @apply transition-all duration-300;
+
+    &:global(.slick-current),
+    &:global(.slick-center) {
+      @apply scale-100 opacity-100;
+    }
+
+    &:not(:global(.slick-current)):not(:global(.slick-center)) {
+      @apply scale-[0.9]; // ✅ JIT 모드에서만 작동
+    }
+  }
+}

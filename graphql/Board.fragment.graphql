@@ -1,0 +1,63 @@
+fragment BoardBase on BoardEntityView {
+  uuid
+}
+
+fragment BoardSummary on BoardEntityView {
+  ...BoardBase
+
+  title
+  version
+  createdDate
+  elapsedCreatedDate
+  likeCount
+  bookmarkCount
+  reviewCount
+  isAnonymous
+  content
+  files {
+    file {
+      url
+    }
+  }
+
+  user {
+    uuid
+    name
+    school {
+      name
+    }
+    schoolVerificationStatus
+  }
+
+  category {
+    uuid
+    name
+  }
+}
+
+fragment BoardDetail on BoardEntityView {
+  ...BoardSummary
+
+  content
+
+  vote {
+    ...VoteDetail
+  }
+
+  files {
+    uuid
+    displayOrder
+    file {
+      url
+    }
+  }
+
+  category {
+    uuid
+    code
+    name
+  }
+
+  isBookmarkedByMe
+  isLikedByMe
+}

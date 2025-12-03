@@ -1,0 +1,2827 @@
+"""
+This directive allows results to be deferred during execution
+"""
+directive @defer on FIELD
+
+input AnnounceEditDtoInput {
+  changeLog: String
+  company: String
+  content: String
+  entityStatus: EntityStatus
+  imageUrl: String
+  labKeywordUuids: [String]
+  title: String
+  totiKeywordUuids: [String]
+  uuid: String!
+}
+
+input AnnounceFetchDtoInput {
+  announceType: AnnounceType
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  sortType: AnnounceSortType
+}
+
+type AnnounceKeywordResponse {
+  code: String!
+  name: String!
+  uuid: String!
+}
+
+enum AnnounceKeywordType {
+  LAB
+  TOTI
+}
+
+type AnnounceMutationResponse {
+  entityStatus: EntityStatus!
+  uuid: String!
+}
+
+type AnnouncePaginationResponse {
+  cursor: String
+  data: [AnnounceResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+input AnnounceRegisterDtoInput {
+  announceType: AnnounceType!
+  company: String
+  content: String!
+  entityStatus: EntityStatus
+  imageUrl: String
+  labKeywordUuids: [String]
+  title: String
+  totiKeywordUuids: [String]
+}
+
+type AnnounceResponse {
+  announceType: AnnounceType
+  company: String
+  content: String!
+  createdBy: String!
+  createdDate: LocalDateTime!
+  entityStatus: EntityStatus!
+  imageUrl: String
+  labKeywords: [AnnounceKeywordResponse]!
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  title: String
+  totiKeywords: [AnnounceKeywordResponse]!
+  uuid: String!
+}
+
+enum AnnounceSortType {
+  RECENT
+  REGISTER
+}
+
+enum AnnounceType {
+  ALL
+  EMPLOY_LAB
+  EXAM_SCHOOL
+}
+
+type AppRole {
+  permissions: [String]
+  roleId: String!
+}
+
+type AppRoleViewDto {
+  roleId: String
+}
+
+enum BannerAction {
+  EXTERNAL_LINK
+  INTERNAL_LINK
+  NONE
+}
+
+type BannerViewDto {
+  action: BannerAction
+  actionValue: String
+  backgroundColor: Int!
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  imageUrl: String
+  indexBackgroundColor: Int!
+  indexColor: Int!
+  indexStrokeColor: Int!
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  title: String
+  uuid: String!
+}
+
+"""
+Built-in java.math.BigDecimal
+"""
+scalar BigDecimal
+
+input BlindDateApplicationFetchDtoInput {
+  age: Int
+  ageMax: Int
+  ageMin: Int
+  entityStatus: EntityStatus
+  gender: Boolean
+  longDistance: Boolean
+  name: String
+  note: String
+  phoneNumber: String
+  round: Int
+  sameCollege: Boolean
+  sameGender: Boolean
+}
+
+input BlindDateApplicationRegisterDtoInput {
+  age: Int
+  ageMax: Int
+  ageMin: Int
+  entityStatus: EntityStatus
+  gender: Boolean
+  longDistance: Boolean
+  name: String
+  note: String
+  phoneNumber: String
+  round: Int
+  sameCollege: Boolean
+  sameGender: Boolean
+}
+
+type BlindDateApplicationResponse {
+  age: Int!
+  ageMax: Int!
+  ageMin: Int!
+  gender: Boolean!
+  longDistance: Boolean!
+  name: String!
+  note: String!
+  phoneNumber: String!
+  round: Int!
+  sameCollege: Boolean!
+  sameGender: Boolean!
+  userUuid: String!
+  uuid: String!
+}
+
+input BlindDateMatchRegisterDtoInput {
+  entityStatus: EntityStatus
+  receiverId: Long!
+  round: Long!
+  senderId: Long!
+}
+
+input BoardEditDtoInput {
+  categoryUuid: String
+  changeLog: String
+  content: String
+  entityStatus: EntityStatus
+  files: [FAEntityFileRegisterDtoInput]
+  isAnonymous: Boolean
+  isDisplayTop: Boolean
+  title: String
+  uuid: String!
+}
+
+type BoardEntityView {
+  boardKeywords: [BoardKeywordViewDto]
+  bookmarkCount: Long
+  category: FAGroupEntityView
+  content: String!
+  createdDate: LocalDateTime
+  createdUserId: Long
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  files: [FAEntityFileEntityView]
+  hotBoard: Boolean
+  isAnonymous: Boolean!
+  isBookmarkedByMe: Boolean
+  isLikedByMe: Boolean
+  likeCount: Long
+  mentorUuid: String
+  reviewCount: Long
+  title: String!
+  user: UserEntityView
+  userReports: [UserReportEntityView]
+  uuid: String!
+  version: Int!
+  vote: VoteEntityView
+}
+
+input BoardFetchDtoInput {
+  boardType: BoardType
+  dateRange: DateRangeInput
+  entityStatus: EntityStatus
+  fetchType: BoardFetchType
+  groupUuid: String
+  isDisplayTop: Boolean
+  keywordUuids: [String]
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  searchKeyword: String
+  sortType: BoardSortType
+  userUuid: String
+}
+
+enum BoardFetchType {
+  LIKE
+  MY_SCRAP
+  REVIEW
+}
+
+type BoardKeywordViewDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  displayOrder: Int
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  keyword: FAGroupViewDto
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  uuid: String!
+}
+
+type BoardPaginationResultDto {
+  cursor: String
+  data: [BoardEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+input BoardRegisterDtoInput {
+  boardType: BoardType
+  categoryUuid: String
+  content: String!
+  entityStatus: EntityStatus
+  files: [FAEntityFileRegisterDtoInput]
+  isAnonymous: Boolean
+  keywordUuids: [String]
+  title: String!
+  version: Int
+  voteRegisterDto: VoteRegisterDtoInput
+}
+
+enum BoardSortType {
+  LIKE
+  POPULAR
+  RECENT
+}
+
+enum BoardType {
+  TOTY
+}
+
+type CategoryRefEntityView {
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  leaf: Boolean
+  scraped: Boolean
+  uuid: String!
+}
+
+input CategoryRefRegisterDtoInput {
+  code: String
+  entityStatus: EntityStatus
+  name: String!
+  parentId: Long
+  type: CategoryRefType!
+}
+
+enum CategoryRefType {
+  BUSAN
+  CATHOLIC
+  CAU
+  CHANGWON
+  CNU
+  DAEGU
+  DANKOOK
+  DGIST
+  DONGGUK
+  EHWA
+  EPFL
+  GIST
+  HANSEI
+  HANSUNG
+  HANYANG
+  HONGIK
+  HS
+  HUFS
+  INHA
+  INJE
+  JBNU
+  KAIST
+  KARTS
+  KDI
+  KNSU
+  KNU
+  KNUE
+  KONKUK
+  KONYANG
+  KOOKMIN
+  KOREA
+  KW
+  KYONGGI
+  KYUNGHEE
+  KYUNGNAM
+  MYUNGJI
+  NONE
+  POSTECH
+  SEJONG
+  SGCP
+  SKKU
+  SNU
+  SOGANG
+  SOOKMYUNG
+  SSU
+  SUNGKYUL
+  SUNGSHIN
+  SUWON
+  SWU
+  ULSAN
+  UNIST
+  UOS
+  YONSEI
+}
+
+type CategoryRefViewDto {
+  code: String
+  isLeaf: Boolean
+  isScraped: Boolean
+  name: String
+  parentId: Long
+  treeLeft: Long
+  treeLevel: Long
+  treeRight: Long
+  uuid: String!
+}
+
+type ChatRoomEntityView {
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastMessage: UserChatEntityView
+  partner: UserEntityView
+  userList: [UserEntityView]
+  uuid: String!
+}
+
+input ChatRoomFetchDtoInput {
+  paginationRequestDto: PaginationRequestDto_StringInput!
+}
+
+type ChatRoomPaginationResultDto {
+  cursor: String
+  data: [ChatRoomEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+type ConfigDto {
+  androidMinVersion: String
+  iosMinVersion: String
+}
+
+type CustomCourseEntityView {
+  createdDate: LocalDateTime
+  dayAndTimeRanges: [DayAndTimeRange]
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  professors: String
+  roomName: String
+  subjectName: String
+  timeTableUuid: String
+  uuid: String!
+}
+
+input CustomCourseRegisterDtoInput {
+  dayAndTimeRanges: [DayAndTimeRangeInput]!
+  entityStatus: EntityStatus
+  professors: String!
+  roomName: String
+  subjectName: String!
+  timeTableUuid: String!
+}
+
+input DateRangeInput {
+  fromDate: LocalDate!
+  toDate: LocalDate
+}
+
+input DateTimeRangeInput {
+  fromDate: LocalDateTime!
+  toDate: LocalDateTime
+}
+
+type DayAndTimeRange {
+  dayOfWeek: DayOfWeek
+  timeRange: TimeRange
+}
+
+input DayAndTimeRangeInput {
+  dayOfWeek: DayOfWeek
+  timeRange: TimeRangeInput
+}
+
+enum DayOfWeek {
+  FRIDAY
+  MONDAY
+  SATURDAY
+  SUNDAY
+  THURSDAY
+  TUESDAY
+  WEDNESDAY
+}
+
+enum DegreeCourseType {
+  JOINT
+  MASTER
+  PHILOSOPHY
+}
+
+enum Direction {
+  ASC
+  DESC
+}
+
+input EntityStatisticsFetchDtoInput {
+  dateRange: DateRangeInput!
+  entityStatisticsType: EntityStatisticsType!
+  parentEntityType: EntityType!
+  parentEntityUuid: String
+}
+
+input EntityStatisticsRegisterDtoInput {
+  entityStatisticsType: EntityStatisticsType!
+  entityStatus: EntityStatus
+  parentEntityType: EntityType!
+  parentEntityUuid: String!
+}
+
+enum EntityStatisticsType {
+  VIEW
+}
+
+type EntityStatisticsViewDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatisticsType: EntityStatisticsType!
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  parentEntityType: EntityType!
+  parentEntityUuid: String!
+  user: UserViewDto!
+  uuid: String!
+}
+
+type EntityStatisticsViewMapDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  dateAndEntityStatistics: Map_LocalDate_List_EntityStatisticsViewDtoScalar
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  uuid: String!
+}
+
+enum EntityStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+  INVALID
+  SEARCHABLE
+}
+
+enum EntityType {
+  BOARD
+  CATEGORY_REF
+  FA_GROUP
+  REVIEW
+  ROOM
+  TOTI_ANSWER
+  TOTI_COMMENT
+  TOTI_MENTOR
+  TOTI_QUESTION
+  USER
+  USER_MESSAGE
+}
+
+type FAEntityFileEntityView {
+  createdDate: LocalDateTime
+  description: String
+  displayOrder: Int
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  file: FileEntityView
+  parentEntityId: Long
+  parentEntityType: EntityType
+  uuid: String!
+}
+
+input FAEntityFileRegisterDtoInput {
+  description: String
+  displayOrder: Int!
+  fileType: FileType
+  fileUuid: String!
+}
+
+type FAEntityFileViewDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  displayOrder: Int
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  file: FileViewDto
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  parentEntityId: Long
+  parentEntityType: EntityType
+  uuid: String!
+}
+
+input FAEntityFileViewDtoInput {
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  displayOrder: Int
+  entityStatus: EntityStatus
+  file: FileViewDtoInput
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  parentEntityId: Long
+  parentEntityType: EntityType
+  uuid: String
+}
+
+type FAEntityGroupViewDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  displayOrder: Int
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  group: FAGroupViewDto
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  parentEntityId: Long
+  parentEntityType: EntityType
+  uuid: String!
+}
+
+input FAEntityGroupViewDtoInput {
+  createdBy: String
+  createdDate: LocalDateTime
+  displayOrder: Int
+  entityStatus: EntityStatus
+  group: FAGroupViewDtoInput
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  parentEntityId: Long
+  parentEntityType: EntityType
+  uuid: String
+}
+
+type FAGroupEntityView {
+  code: String
+  createdDate: LocalDateTime
+  description: String
+  displayOrder: Int
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  iconUrl: String
+  name: String
+  subGroupType: FASubGroupType
+  uuid: String!
+  writable: Boolean
+}
+
+input FAGroupFetchDtoInput {
+  entityStatus: EntityStatus
+  groupType: FAGroupType!
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  reviewType: ReviewType
+  sortType: GroupSortType!
+}
+
+type FAGroupPaginationResultDto {
+  cursor: String
+  data: [FAGroupViewDto]!
+  page: Long!
+  totalCount: Long!
+}
+
+input FAGroupRegisterDtoInput {
+  code: String!
+  entityStatus: EntityStatus
+  groupType: FAGroupType!
+  name: String!
+}
+
+enum FAGroupType {
+  BOARD
+  MENTOR_KEYWORD
+  RESTAURANT_BUSINESS_TYPE
+  REVIEW_RESTAURANT_PROPERTY
+  TAG
+}
+
+type FAGroupViewDto {
+  code: String
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  displayOrder: Int
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  iconUrl: String
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  name: String
+  subGroupType: FASubGroupType
+  uuid: String!
+  writable: Boolean
+}
+
+input FAGroupViewDtoInput {
+  code: String
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  displayOrder: Int
+  entityStatus: EntityStatus
+  iconUrl: String
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  name: String
+  subGroupType: FASubGroupType
+  uuid: String
+}
+
+enum FASubGroupType {
+  AFTER_COURSE_JOB
+  GENERAL
+  MAJOR
+  PROFESSIONAL
+}
+
+enum FAUploadScope {
+  ALL
+  ME
+}
+
+type FileEntityView {
+  contentType: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  name: String
+  s3Key: String
+  url: String
+  uuid: String!
+}
+
+enum FileType {
+  MENTOR_CERTIFICATE
+  SCHOOL_CERTIFICATE
+}
+
+type FileViewDto {
+  contentType: String
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  name: String
+  s3Key: String
+  url: String
+  uuid: String!
+}
+
+input FileViewDtoInput {
+  contentType: String
+  createdBy: String
+  createdDate: LocalDateTime
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  name: String
+  s3Key: String
+  url: String
+  uuid: String
+}
+
+enum GenderType {
+  FEMALE
+  MALE
+  NONE
+}
+
+enum GroupSortType {
+  POPULAR
+  RECENT
+}
+
+input InformEditDtoInput {
+  changeLog: String
+  content: String
+  dateRange: DateTimeRangeInput
+  entityStatus: EntityStatus
+  imageUrl: String
+  informType: InformType
+  title: String
+  uuid: String!
+}
+
+type InformEntityView {
+  content: String!
+  createdDate: LocalDateTime
+  createdUserId: Long
+  elapsedCreatedDate: String
+  endDate: LocalDateTime!
+  entityStatus: EntityStatus
+  imageUrl: String!
+  informType: InformType!
+  startDate: LocalDateTime!
+  title: String!
+  uuid: String!
+}
+
+input InformFetchDtoInput {
+  count: Long!
+  dateRange: DateTimeRangeInput
+  entityStatus: EntityStatus
+  informType: InformType
+  page: Long!
+}
+
+type InformPaginationResultDto {
+  cursor: String
+  data: [InformEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+input InformRegisterDtoInput {
+  content: String
+  dateRange: DateTimeRangeInput!
+  entityStatus: EntityStatus
+  imageUrl: String
+  informType: InformType!
+  title: String!
+}
+
+enum InformType {
+  POPUP
+}
+
+enum InterestCategory {
+  BUSINESS
+  POLITICS
+  SPORT
+}
+
+type LabKeywordResponse {
+  code: String!
+  name: String!
+  uuid: String!
+}
+
+"""
+Built-in scalar representing a local date
+"""
+scalar LocalDate
+
+"""
+Built-in scalar representing a local date-time
+"""
+scalar LocalDateTime
+
+"""
+Built-in scalar representing a local time
+"""
+scalar LocalTime
+
+"""
+Long type
+"""
+scalar Long
+
+type MailVerificationDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  desc: String
+  elapsedCreatedDate: String
+  email: String
+  entityStatus: EntityStatus
+  expiredAt: LocalDateTime
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  status: MailVerificationStatus
+  user: UserViewDto
+  uuid: String!
+  verifiedAt: LocalDateTime
+}
+
+enum MailVerificationStatus {
+  SENT
+  UNSENT
+  VERIFIED
+}
+
+"""
+Built-in scalar for map-like structures
+"""
+scalar Map_LocalDate_List_EntityStatisticsViewDtoScalar
+
+"""
+Built-in scalar for map-like structures
+"""
+scalar Map_LocalDate_List_UserViewDtoScalar
+
+"""
+Built-in scalar for map-like structures
+"""
+scalar Map_String_StringScalar
+
+"""
+Mutation root
+"""
+type Mutation {
+  createAdminUser(registerDto: UserRegisterDtoInput): UserEntityView!
+  createPost(registerDto: PostRegisterDtoInput): PostViewDto!
+  createUser(registerDto: UserRegisterDtoInput): UserEntityView!
+  createUserAppRole(registerDto: UserAppRoleRegisterDtoInput): UserAppRoleViewDto
+  deleteBoard(uuid: String): Boolean!
+  deleteInfoBoard(boardUuid: String): Boolean!
+  deleteNotice(uuid: String): Boolean!
+  deleteReview(reviewUuid: String): Boolean!
+  deleteRoom(uuid: String): Boolean!
+  deleteTimeTable(uuid: String): Boolean!
+  deleteUserInteraction(userInteractionDeleteDto: UserInteractionDeleteDtoInput): Boolean!
+  editAnnounce(editDto: AnnounceEditDtoInput): AnnounceMutationResponse!
+  editAnnounces(editDtos: [AnnounceEditDtoInput]): [AnnounceMutationResponse]!
+  editBoard(editDto: BoardEditDtoInput): BoardEntityView!
+  editBoards(editDtos: [BoardEditDtoInput]): [BoardEntityView]!
+  editInform(editDto: InformEditDtoInput): InformEntityView!
+  editInforms(editDtos: [InformEditDtoInput]): [InformEntityView]!
+  editNotice(editDto: NoticeEditDtoInput): NoticeEntityView!
+  editNotices(editDtos: [NoticeEditDtoInput]): [NoticeEntityView]!
+  editPost(editDto: PostEditDtoInput, uuid: String): PostViewDto!
+  editReview(editDto: ReviewEditDtoInput): ReviewViewDto!
+  editReviews(editDtos: [ReviewEditDtoInput]): [ReviewViewDto]!
+  editSchoolCourse(editDto: SchoolCourseEditDtoInput): SchoolCourseEntityView!
+  editSchoolCourses(editDtos: [SchoolCourseEditDtoInput]): [SchoolCourseEntityView]!
+  editSeller(editDto: SellerEditDtoInput): SellerResponse!
+  editTimeTable(editDto: TimeTableEditDtoInput): TimeTableEntityView!
+  editTotiAnswer(editDto: TotiAnswerEditDtoInput): TotiAnswerMutationResponse!
+  editTotiAnswers(editDtos: [TotiAnswerEditDtoInput]): [TotiAnswerMutationResponse]!
+  editTotiComment(editDto: TotiCommentEditDtoInput): TotiCommentMutationResponse!
+  editTotiComments(editDtos: [TotiCommentEditDtoInput]): [TotiCommentMutationResponse]!
+  editTotiMentor(editDto: TotiMentorEditDtoInput): TotiMentorMutationResponse!
+  editTotiMentors(editDtos: [TotiMentorEditDtoInput]): [TotiMentorMutationResponse]!
+  editTotiQuestion(editDto: TotiQuestionEditDtoInput): TotiQuestionMutationResponse!
+  editTotiQuestions(editDtos: [TotiQuestionEditDtoInput]): [TotiQuestionMutationResponse]!
+  editUser(editDto: UserEditDtoInput): UserEntityView!
+  editUserMessage(editDto: UserMessageEditDtoInput): UserMessageViewDto!
+  editUserNotification(editDto: UserNotificationEditDtoInput): UserNotificationViewDto!
+  editUsers(editDtos: [UserEditDtoInput]): [UserEntityView]!
+  editVote(editDto: VoteEditDtoInput): VoteEntityView
+  fixBoardTop(boardUuid: String): Boolean!
+  log(log: String): Boolean!
+  makeUnsearchable(uuid: String): Boolean!
+  matchBlindDate(registerDtos: [BlindDateMatchRegisterDtoInput]): Boolean!
+  readAllUserNotification: Boolean!
+  registerAllNotification(registerDto: NotificationAllRegisterDtoInput): Boolean!
+  registerAnnounce(registerDto: AnnounceRegisterDtoInput): AnnounceMutationResponse!
+  registerBlindDateApplication(
+    registerDto: BlindDateApplicationRegisterDtoInput
+  ): Boolean!
+  registerBoard(registerDto: BoardRegisterDtoInput): BoardEntityView!
+  registerBoardNotification(boardUuid: String): Boolean!
+  registerCategoryRef(registerDto: CategoryRefRegisterDtoInput): CategoryRefViewDto!
+  registerEntityStatistics(
+    entityStatisticsRegisterDto: EntityStatisticsRegisterDtoInput
+  ): EntityStatisticsViewDto!
+  registerFAGroup(registerDto: FAGroupRegisterDtoInput): FAGroupViewDto!
+  registerInfoBoard(boardUuid: String): Boolean!
+  registerInfoBoards(boardUuids: [String]): Boolean!
+  registerInform(registerDto: InformRegisterDtoInput): InformEntityView!
+  registerNotice(registerDto: NoticeRegisterDtoInput): NoticeEntityView!
+  registerNotificationBySchool(
+    registerDto: NotificationBySchoolRegisterDtoInput
+  ): NotificationViewDto
+  registerPaperProduct(registerDto: PaperProductRegisterDtoInput): PaperProductResponse!
+  registerPaperProductPayment(registerDto: PaperProductPaymentRegisterDtoInput): String!
+  registerReview(registerDto: ReviewRegisterDtoInput): ReviewViewDto!
+  registerSchoolType(registerDto: SchoolTypeRegisterDtoInput): SchoolTypeEntityView
+  registerSeller(registerDto: SellerRegisterDtoInput): SellerResponse
+  registerTimeTable(registerDto: TimeTableRegisterDtoInput): TimeTableEntityView!
+  registerTotiAnswer(registerDto: TotiAnswerRegisterDtoInput): TotiAnswerMutationResponse!
+  registerTotiComment(
+    registerDto: TotiCommentRegisterDtoInput
+  ): TotiCommentMutationResponse!
+  registerTotiKeywordWithUser(registerDto: TotiKeywordUserRegisterDtoInput): Boolean!
+  registerTotiMentor(registerDto: TotiMentorRegisterDtoInput): TotiMentorMutationResponse!
+  registerTotiQuestion(
+    registerDto: TotiQuestionRegisterDtoInput
+  ): TotiQuestionMutationResponse!
+  registerUserChat(registerDto: UserChatRegisterDtoInput): UserChatEntityView!
+  registerUserInteraction(
+    userInteractionRegisterDto: UserInteractionRegisterDtoInput
+  ): UserInteractionMutationResponse!
+  registerUserMessage(registerDto: UserMessageRegisterDtoInput): UserMessageViewDto!
+  registerUserReport(registerDto: UserReportRegisterDtoInput): UserReportEntityView!
+  remapSchoolCoursesTimeByType(categoryRefType: CategoryRefType): Boolean!
+  removeAnnounce(uuid: String): Boolean!
+  removeTotiAnswer(uuid: String): Boolean!
+  removeTotiComment(uuid: String): Boolean!
+  removeTotiKeywordWithUser(userUuid: String): Boolean!
+  removeTotiMentor(uuid: String): Boolean!
+  removeTotiQuestion(uuid: String): Boolean!
+  resetUserPassword(email: String, password: String): UserEntityView!
+  sendNotification(registerDto: NotificationRegisterDtoInput): NotificationViewDto
+  sendPushNotification(requestDto: PushNotificationRequestDtoInput): Boolean!
+  sendResetPasswordEmail(email: String, name: String): Boolean!
+  sendVerificationCode(email: String): MailVerificationDto!
+  setDefaultProfileImage: Boolean!
+  setReadChat(chatUuid: String): Boolean!
+  unregisterUser(reason: String, uuid: String): UserEntityView!
+  updateUserStatus(userStatus: UserStatus, userUuids: [String]): [UserEntityView]!
+  upsertSearchKeyword(upsertDto: SearchKeywordUpsertDtoInput): Boolean!
+  verifyCode(code: String, email: String): MailVerificationDto!
+  confirmPayment(confirmDto: PaymentConfirmDtoInput): String!
+  validatePaymentByPaymentKey(paymentKey: String): Boolean!
+}
+
+input NoticeEditDtoInput {
+  changeLog: String
+  content: String
+  entityStatus: EntityStatus
+  title: String
+  uuid: String!
+}
+
+type NoticeEntityView {
+  content: String!
+  createdDate: LocalDateTime
+  createdUserId: Long
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isLikedByMe: Boolean
+  likeCount: Long
+  title: String!
+  uuid: String!
+}
+
+input NoticeFetchDtoInput {
+  dateRange: DateRangeInput
+  entityStatus: EntityStatus
+  fetchType: NoticeFetchType
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  searchKeyword: String
+  sortType: NoticeSortType
+}
+
+enum NoticeFetchType {
+  LIKE
+}
+
+type NoticePaginationResultDto {
+  cursor: String
+  data: [NoticeEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+input NoticeRegisterDtoInput {
+  content: String!
+  entityStatus: EntityStatus
+  title: String!
+}
+
+enum NoticeSortType {
+  LIKE
+  RECENT
+}
+
+input NotificationAllRegisterDtoInput {
+  actionUrl: String
+  content: String!
+  entityStatus: EntityStatus
+  iconUrl: String
+  title: String!
+}
+
+input NotificationBySchoolRegisterDtoInput {
+  actionUrl: String
+  content: String!
+  data: String
+  entityStatus: EntityStatus
+  entityType: EntityType
+  iconUrl: String
+  schoolUuid: String!
+  senderUuid: String
+  title: String!
+}
+
+input NotificationRegisterDtoInput {
+  actionUrl: String
+  content: String!
+  data: String
+  entityStatus: EntityStatus
+  entityType: EntityType
+  iconUrl: String
+  notificationType: NotificationType!
+  senderUuid: String
+  title: String!
+  userNotifications: [UserNotificationRegisterDtoInput]!
+}
+
+enum NotificationType {
+  APPROVE_SCHOOL_VERIFY
+  BOARD_BOOKMARK
+  BOARD_LIKE
+  BOARD_REVIEW
+  FOLLOW
+  GENERAL
+  MENTORING_REVIEWED
+  REJECT_SCHOOL_VERIFY
+  REVIEW_BOARD
+  REVIEW_BOOKMARK
+  REVIEW_LIKE
+  REVIEW_REVIEW
+  SCHOOL_NOTICE
+  TOTI_QUESTION_ANSWER
+  USER_CHAT
+  USER_MESSAGE
+}
+
+type NotificationViewDto {
+  actionUrl: String
+  content: String
+  createdBy: String
+  createdDate: LocalDateTime
+  data: String
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  entityType: EntityType
+  iconUrl: String
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  notificationType: NotificationType
+  sender: UserViewDto
+  title: String
+  uuid: String!
+}
+
+input NotificationViewDtoInput {
+  actionUrl: String
+  content: String
+  createdBy: String
+  createdDate: LocalDateTime
+  data: String
+  entityStatus: EntityStatus
+  entityType: EntityType
+  iconUrl: String
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  notificationType: NotificationType
+  sender: UserViewDtoInput
+  title: String
+  uuid: String
+}
+
+type Page_UserEntityView {
+  content: [UserEntityView]
+  first: Boolean!
+  last: Boolean!
+  number: Int!
+  numberOfElements: Int!
+  pageable: Pageable
+  size: Int!
+  sort: Sort
+  totalElements: Long!
+  totalPages: Int!
+}
+
+type Pageable {
+  offset: Long!
+  pageNumber: Int!
+  pageSize: Int!
+  paged: Boolean!
+  sort: Sort
+  unpaged: Boolean!
+}
+
+input PaginationRequestDto_ReviewViewDtoInput {
+  count: Int!
+  cursor: ReviewViewDtoInput
+  page: Int
+}
+
+input PaginationRequestDto_StringInput {
+  count: Int!
+  cursor: String
+  page: Int
+}
+
+input PaginationRequestDto_UserNotificationViewDtoInput {
+  count: Int!
+  cursor: UserNotificationViewDtoInput
+  page: Int
+}
+
+input PaperHelperFetchDtoInput {
+  paginationRequestDto: PaginationRequestDto_StringInput
+}
+
+type PaperHelperViewDto {
+  category: String
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  link_url: String
+  logo_url: String
+  thumbnail_url: String
+  title: String
+  uuid: String!
+}
+
+input PaperProductItemPaymentRegisterDtoInput {
+  itemCounts: Int!
+  paperProductItemUuid: String
+}
+
+input PaperProductItemRegisterDtoInput {
+  basic: Boolean!
+  displayOrder: Int
+  editTimes: Int
+  entityStatus: EntityStatus
+  maxCounts: Int
+  price: BigDecimal!
+  title: String!
+  workDays: Int
+}
+
+type PaperProductItemResponse {
+  basic: Boolean!
+  displayOrder: Int!
+  editTimes: Int!
+  maxCounts: Int!
+  paperProduct: PaperProductResponse!
+  price: BigDecimal!
+  productCounts: Int!
+  title: String!
+  uuid: String!
+  workDays: Int!
+}
+
+input PaperProductPaginationFetchDtoInput {
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  searchKeyword: String
+  sortType: PaperProductSortType
+}
+
+type PaperProductPaginationResponse {
+  cursor: String
+  data: [PaperProductResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+input PaperProductPaymentRegisterDtoInput {
+  items: [PaperProductItemPaymentRegisterDtoInput]
+  paperProductUuid: String
+  paymentStatus: PaymentStatus
+}
+
+input PaymentConfirmDtoInput {
+  amount: Long!
+  orderId: String
+  paymentKey: String
+}
+
+type PaperProductPaymentResponse {
+  additionalItems: [PaperProductItemResponse]
+  basicItems: [PaperProductItemResponse]
+  paperProduct: PaperProductResponse
+  paymentKey: String
+  point: BigDecimal
+  price: BigDecimal
+  sellerDescription: String
+  sellerName: String
+  status: PaymentStatus
+  userUuid: String
+  uuid: String
+}
+
+input PaperProductRegisterDtoInput {
+  contentUrl: String!
+  discountPercentage: BigDecimal
+  entityStatus: EntityStatus
+  items: [PaperProductItemRegisterDtoInput]!
+  price: BigDecimal!
+  sellerUuid: String!
+  thumbnailUrl: String!
+  title: String!
+}
+
+type PaperProductResponse {
+  additionalItems: [PaperProductItemResponse]!
+  basicItems: [PaperProductItemResponse]!
+  contentUrl: String!
+  discountPercentage: BigDecimal!
+  likeCount: Long!
+  price: BigDecimal!
+  seller: SellerResponse!
+  thumbnailUrl: String!
+  title: String!
+  uuid: String!
+}
+
+enum PaperProductSortType {
+  LIKE
+  POPULAR
+  RECENT
+}
+
+enum PaymentStatus {
+  DONE
+  IN_CART
+  IN_PROGRESS
+}
+
+input PostEditDtoInput {
+  changeLog: String
+  content: String
+  entityStatus: EntityStatus
+  title: String
+  uuid: String!
+}
+
+input PostRegisterDtoInput {
+  content: String
+  entityStatus: EntityStatus
+  title: String
+}
+
+type PostViewDto {
+  content: String
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  title: String
+  uuid: String!
+}
+
+input PushNotificationRequestDtoInput {
+  body: String
+  data: Map_String_StringScalar
+  imageUrl: String
+  title: String
+  tokens: [String]
+  topic: String
+}
+
+"""
+Query root
+"""
+type Query {
+  FAGroupByCode(code: String): FAGroupViewDto!
+  FAGroupByTypeAndName(groupType: FAGroupType, name: String): FAGroupViewDto!
+  FAGroupByUuid(uuid: String): FAGroupViewDto!
+  FAGroups: [FAGroupViewDto]!
+  FAGroupsByCursor(fetchDto: FAGroupFetchDtoInput): FAGroupPaginationResultDto!
+  FAGroupsByType(groupType: FAGroupType): [FAGroupViewDto]!
+  activatedUsersByDateRange(dateRange: DateRangeInput): UserStatisticsViewDto!
+  announce(announceUuid: String): AnnounceResponse
+  announceKeywords(type: AnnounceKeywordType): [AnnounceKeywordResponse]!
+  announcesByCursor(fetchDto: AnnounceFetchDtoInput): AnnouncePaginationResponse
+  announcesByPaging(fetchDto: AnnounceFetchDtoInput): AnnouncePaginationResponse
+  banners: [BannerViewDto]!
+  blindDateApplications: [BlindDateApplicationResponse]
+  blindDateApplicationsBy(
+    fetchDto: BlindDateApplicationFetchDtoInput
+  ): [BlindDateApplicationResponse]
+  board(uuid: String): BoardEntityView!
+  boardByReview(reviewUuid: String): BoardEntityView!
+  boardsByCursor(fetchDto: BoardFetchDtoInput): BoardPaginationResultDto!
+  boardsByPaging(fetchDto: BoardFetchDtoInput): BoardPaginationResultDto!
+  categories(
+    parentUuid: String
+    schoolTypeUuid: String
+    type: CategoryRefType
+  ): [CategoryRefViewDto!]!
+  chatRoom(uuid: String): ChatRoomEntityView!
+  chatRoomsByCursor(fetchDto: ChatRoomFetchDtoInput): ChatRoomPaginationResultDto!
+  checkEmailExists(email: String): Boolean!
+  checkPassword(password: String): Boolean!
+  config: ConfigDto!
+  entityStatistics(fetchDto: EntityStatisticsFetchDtoInput): EntityStatisticsViewMapDto!
+  existsEmail(email: String): Boolean!
+  existsNickName(nickname: String): Boolean!
+  existsPaymentByProductUuid(productUuid: String): Boolean!
+  favoriteTimeTable(
+    date: LocalDate
+    fetchDto: TimeTableFetchDtoInput
+  ): TimeTableEntityView
+  findAdminUserByEmail(email: String): UserEntityView!
+  findUserByEmail(email: String): Boolean!
+  infoBoardsByCursor(fetchDto: BoardFetchDtoInput): BoardPaginationResultDto!
+  informsBy(fetchDto: InformFetchDtoInput): InformPaginationResultDto!
+  labKeywords: [LabKeywordResponse]
+  me: UserEntityView!
+  myTotiMentor: TotiMentorKeywordResponse
+  notice(uuid: String): NoticeEntityView!
+  noticesByCursor(fetchDto: NoticeFetchDtoInput): NoticePaginationResultDto!
+  noticesByPaging(fetchDto: NoticeFetchDtoInput): NoticePaginationResultDto!
+  paperHelpers(fetchDto: PaperHelperFetchDtoInput): [PaperHelperViewDto]
+  paperProduct(uuid: String): PaperProductResponse
+  paperProductByFetchDto(
+    fetchDto: PaperProductPaginationFetchDtoInput
+  ): PaperProductPaginationResponse
+  paperProductPaymentByUuid(paperProductPaymentUuid: String): PaperProductPaymentResponse!
+  posts: [PostViewDto]!
+  recentSearchKeywords(fetchDto: SearchKeywordFetchDtoInput): [SearchKeywordViewDto]
+  review(reviewUuid: String): ReviewViewDto!
+  reviewsByCursor(fetchDto: ReviewFetchDtoInput): ReviewPaginationResultDto!
+  reviewsByPaging(reviewFetchDto: ReviewFetchDtoInput): ReviewPaginationResultDto!
+  room(uuid: String): RoomEntityView!
+  roomsByCursor(fetchDto: RoomFetchDtoInput): RoomPaginationResultDto!
+  schoolCourse(schoolCourseUuid: String): SchoolCourseEntityView!
+  schoolCoursesByCategory(categoryUuid: String): [SchoolCourseEntityView]!
+  schoolCoursesByCursor(
+    fetchDto: SchoolCourseFetchDtoInput
+  ): SchoolCoursePaginationResultDto!
+  schoolCoursesByPaging(
+    schoolCourseFetchDto: SchoolCourseFetchDtoInput
+  ): SchoolCoursePaginationResultDto!
+  schoolList(fetchDto: SchoolTypeFetchDtoInput): [SchoolTypeEntityView]
+  sellers(paginationRequestDto: SellerPaginationFetchDtoInput): SellerPaginationResponse
+  tests(fetchDto: TestFetchDtoInput, page: Int!): TestResultDto!
+  timeTable(uuid: String): TimeTableEntityView!
+  timeTableTemplates: [TimeTableTemplate]!
+  timeTables(fetchDto: TimeTableFetchDtoInput): [TimeTableEntityView]!
+  topFixedBoard: BoardEntityView!
+  tossUnacceptedTermsByType(tossTermType: TossTermType): [TossTermResponse]!
+  totiAnswer(answerUuid: String): TotiAnswerResponse
+  totiAnswersByCursor(fetchDto: TotiAnswerFetchDtoInput): TotiAnswerPaginationResponse
+  totiAnswersByPaging(fetchDto: TotiAnswerFetchDtoInput): TotiAnswerPaginationResponse
+  totiComment(commentUuid: String): TotiCommentResponse
+  totiCommentsByCursor(fetchDto: TotiCommentFetchDtoInput): TotiCommentPaginationResponse
+  totiCommentsByPaging(fetchDto: TotiCommentFetchDtoInput): TotiCommentPaginationResponse
+  totiKeywords: [TotiKeywordResponse]
+  totiKeywordsUser(userUuid: String): [TotiKeywordResponse]
+  totiMentor(mentorUuid: String): TotiMentorKeywordResponse
+  totiMentorsByCursor(fetchDto: TotiMentorFetchDtoInput): TotiMentorPaginationResponse
+  totiMentorsByPaging(fetchDto: TotiMentorFetchDtoInput): TotiMentorPaginationResponse
+  totiMentorsKeywordByCursor(
+    fetchDto: TotiMentorFetchDtoInput
+  ): TotiMentorKeywordPaginationResponse
+  totiQuestion(uuid: String): TotiQuestionDetailResponse
+  totiQuestionAnswerByCursor(
+    fetchDto: TotiQuestionAnswerFetchDtoInput
+  ): TotiQuestionAnswerPaginationResponse
+  totiQuestionsByCursor(
+    fetchDto: TotiQuestionFetchDtoInput
+  ): TotiQuestionPaginationResponse
+  totiQuestionsByPaging(
+    fetchDto: TotiQuestionFetchDtoInput
+  ): TotiQuestionPaginationResponse
+  unreadChatCount: Long!
+  unreadMessageCount: Long!
+  user(uuid: String): UserEntityView!
+  userAppRole(uuid: String): UserAppRoleViewDto
+  userAppRoles: [AppRole]
+  userChatByCursor(fetchDto: UserChatFetchDtoInput): UserChatPaginationResultDto!
+  userInteraction(userInteractionUuid: String): UserInteractionResponse!
+  userInteractionsByCursor(
+    fetchDto: UserInteractionFetchDtoInput
+  ): UserInteractionPaginationResponse!
+  userInteractionsByPaging(
+    fetchDto: UserInteractionFetchDtoInput
+  ): UserInteractionPaginationResponse
+  userMessagesByCursor(
+    fetchDto: UserMessageFetchDtoInput
+  ): UserMessagePaginationResultDto!
+  userMessagesByPaging(
+    fetchDto: UserMessageFetchDtoInput
+  ): UserMessagePaginationResultDto!
+  userNotificationCount: Long!
+  userNotificationsByCursor(
+    fetchDto: UserNotificationFetchDtoInput
+  ): UserNotificationPaginationResultDto!
+  userNotificationsByPaging(
+    fetchDto: UserNotificationFetchDtoInput
+  ): UserNotificationPaginationResultDto!
+  userReport(uuid: String): UserReportEntityView!
+  usersByCursor(userFetchDto: UserFetchDtoInput): UserPaginationResultDto!
+  usersByFilter(
+    paymentStatuses: [UserPaymentStatus]
+    searchFilterDto: UserSearchFilterDtoInput
+    userStatuses: [UserStatus]
+  ): [UserEntityView]!
+  usersByFilterWithPagination(
+    page: Int!
+    paymentStatuses: [UserPaymentStatus]
+    searchFilterDto: UserSearchFilterDtoInput
+    size: Int!
+    userStatuses: [UserStatus]
+  ): Page_UserEntityView!
+  usersByPaging(userFetchDto: UserFetchDtoInput): UserPaginationResultDto!
+  vote(uuid: String): VoteEntityView
+}
+
+input ReviewEditDtoInput {
+  changeLog: String
+  content: String
+  entityStatus: EntityStatus
+  files: [FAEntityFileRegisterDtoInput]
+  isAnonymous: Boolean
+  parentEntityUuid: String
+  rating: BigDecimal
+  uuid: String!
+}
+
+input ReviewFetchDtoInput {
+  entityStatus: EntityStatus
+  groupUuid: String
+  paginationRequestDto: PaginationRequestDto_ReviewViewDtoInput!
+  parentEntityType: EntityType!
+  parentEntityUuid: String
+  reviewType: ReviewType
+  sortType: ReviewSortType
+  userInteractionType: UserInteractionType
+  userUuid: String
+}
+
+type ReviewPaginationResultDto {
+  cursor: String
+  data: [ReviewViewDto]!
+  page: Long!
+  totalCount: Long!
+}
+
+input ReviewRegisterDtoInput {
+  content: String
+  entityStatus: EntityStatus
+  files: [FAEntityFileRegisterDtoInput]
+  groupRegisterRequest: String
+  isAnonymous: Boolean
+  parentEntityType: EntityType!
+  parentEntityUuid: String!
+  parentReviewUuid: String
+  rating: BigDecimal
+  uploadScope: FAUploadScope
+}
+
+enum ReviewSortType {
+  POPULAR
+  RECENT
+}
+
+enum ReviewType {
+  BOARD
+  MENTOR
+  MENTORING
+  SCHOOL_COURSE
+}
+
+type ReviewViewDto {
+  bookmarkCount: Long
+  childReviewCount: Long
+  childReviews: [ReviewViewDto]
+  content: String
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  files: [FAEntityFileViewDto]
+  groups: [FAEntityGroupViewDto]
+  isAnonymous: Boolean
+  isBlock: Boolean
+  isBookmarkedByMe: Boolean
+  isLikedByMe: Boolean
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  likeCount: Long
+  parentEntityType: EntityType
+  parentEntityUuid: String
+  parentReviewUuid: String
+  rating: BigDecimal
+  reviewType: ReviewType
+  user: UserViewDto
+  userIdForFieldSecurityValidation: Long
+  userReports: [UserReportViewDto]
+  uuid: String!
+}
+
+input ReviewViewDtoInput {
+  bookmarkCount: Long
+  childReviews: [ReviewViewDtoInput]
+  content: String
+  createdBy: String
+  createdDate: LocalDateTime
+  entityStatus: EntityStatus
+  files: [FAEntityFileViewDtoInput]
+  groups: [FAEntityGroupViewDtoInput]
+  isAnonymous: Boolean
+  isBlock: Boolean
+  isBookmarkedByMe: Boolean
+  isLikedByMe: Boolean
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  likeCount: Long
+  parentEntityType: EntityType
+  parentEntityUuid: String
+  parentReviewUuid: String
+  rating: BigDecimal
+  reviewType: ReviewType
+  user: UserViewDtoInput
+  userReports: [UserReportViewDtoInput]
+  uuid: String
+}
+
+type RoomEntityView {
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isAnonymous: Boolean
+  lastMessage: UserMessageEntityView
+  parentEntityType: EntityType
+  parentUuid: String
+  partner: UserEntityView
+  uuid: String!
+}
+
+input RoomFetchDtoInput {
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  userUuid: String
+}
+
+type RoomPaginationResultDto {
+  cursor: String
+  data: [RoomEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+input SchoolCourseEditDtoInput {
+  academyYear: Int
+  changeLog: String
+  code: String
+  divisionCode: String
+  engSubjectName: String
+  entityStatus: EntityStatus
+  extras: String
+  grade: BigDecimal
+  isClosed: Boolean
+  kindsCode: String
+  kindsName: String
+  practiceDivisionCode: String
+  professors: String
+  roomName: String
+  semester: String
+  studentYear: Int
+  subjectName: String
+  time: String
+  uuid: String!
+}
+
+type SchoolCourseEntityView {
+  academyYear: Int
+  categoryRefSchoolCourses: [CategoryRefEntityView]
+  code: String
+  createdDate: LocalDateTime
+  dayAndTimeRanges: [DayAndTimeRange]
+  divisionCode: String
+  elapsedCreatedDate: String
+  engSubjectName: String
+  entityStatus: EntityStatus
+  extras: String
+  grade: BigDecimal
+  isClosed: Boolean
+  kindsCode: String
+  kindsName: String
+  numBooking: Int
+  planUrl: String
+  practiceDivisionCode: String
+  professors: String
+  roomName: String
+  semester: String
+  studentYear: Int
+  subDescription: String
+  subjectName: String
+  time: String
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+input SchoolCourseFetchDtoInput {
+  categoryRefUuid: String
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_StringInput
+  searchKeyword: SearchKeywordSearchDtoInput
+  semesterType: SemesterType
+  sortType: SchoolCourseSortType
+  year: Int
+}
+
+type SchoolCoursePaginationResultDto {
+  cursor: String
+  data: [SchoolCourseEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+enum SchoolCourseSortType {
+  BOOKING_ASC
+  BOOKING_DESC
+  RATING_ASC
+  RATING_DESC
+  SUBJECT_NAME
+}
+
+type SchoolTypeEntityView {
+  code: String!
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  name: String!
+  region: String!
+  uuid: String!
+}
+
+input SchoolTypeFetchDtoInput {
+  region: String
+  sortType: SchoolTypeSortType
+}
+
+input SchoolTypeRegisterDtoInput {
+  code: String!
+  entityStatus: EntityStatus
+  name: String!
+  region: String!
+}
+
+enum SchoolTypeSortType {
+  CODE
+  NAME
+}
+
+type SchoolTypeViewDto {
+  code: String
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  name: String
+  region: String
+  uuid: String!
+}
+
+input SchoolTypeViewDtoInput {
+  code: String
+  createdBy: String
+  createdDate: LocalDateTime
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  name: String
+  region: String
+  uuid: String
+}
+
+enum SchoolVerificationStatus {
+  APPROVED
+  IN_REVIEW
+  NONE
+  REJECTED
+}
+
+input SearchKeywordFetchDtoInput {
+  searchKeywordType: SearchKeywordType
+  userUuid: String
+}
+
+input SearchKeywordSearchDtoInput {
+  keyword: String
+  searchKeywordType: SearchKeywordType
+}
+
+enum SearchKeywordType {
+  COURSE_PLACE
+  PROFESSOR_NAME
+  SUBJECT_CODE
+  SUBJECT_NAME
+}
+
+input SearchKeywordUpsertDtoInput {
+  description: String
+  imageUrl: String
+  keyword: String
+  searchKeywordType: SearchKeywordType
+}
+
+type SearchKeywordViewDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  imageUrl: String
+  keyword: String
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  reviewCount: Long
+  searchKeywordType: SearchKeywordType
+  uuid: String!
+}
+
+input SellerEditDtoInput {
+  description: String
+  entityStatus: EntityStatus
+  name: String
+  sellerUuid: String!
+}
+
+input SellerPaginationFetchDtoInput {
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  searchKeyword: String
+}
+
+type SellerPaginationResponse {
+  cursor: String
+  data: [SellerResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+input SellerRegisterDtoInput {
+  description: String!
+  entityStatus: EntityStatus
+  name: String!
+}
+
+type SellerResponse {
+  description: String!
+  likeCount: Long!
+  name: String!
+  uuid: String!
+}
+
+enum SemesterType {
+  FALL
+  SPRING
+  SUMMER
+  WINTER
+}
+
+enum SocialProvider {
+  APP
+  APPLE
+  FACEBOOK
+  KAKAOTALK
+}
+
+type Sort {
+  DEFAULT_DIRECTION: Direction
+  sorted: Boolean!
+  unsorted: Boolean!
+}
+
+enum StudentType {
+  NONE
+  POSTGRAD
+  UNDERGRADUATE
+}
+
+type TestDto {
+  description: String
+  title: String
+}
+
+input TestFetchDtoInput {
+  count: Int!
+}
+
+type TestResultDto {
+  page: Int!
+  tests: [TestDto]
+}
+
+type TimeRange {
+  fromTime: LocalTime
+  toTime: LocalTime
+}
+
+input TimeRangeInput {
+  fromTime: LocalTime
+  toTime: LocalTime
+}
+
+input TimeTableEditDtoInput {
+  changeLog: String
+  customCourses: [CustomCourseRegisterDtoInput]
+  entityStatus: EntityStatus
+  isFavorite: Boolean
+  name: String
+  timeTableSchoolCourses: [TimeTableSchoolCourseRegisterDtoInput]
+  uuid: String!
+}
+
+type TimeTableEntityView {
+  createdDate: LocalDateTime
+  customCourses: [CustomCourseEntityView]
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isFavorite: Boolean
+  name: String
+  schoolCourses: [SchoolCourseEntityView]
+  semester: SemesterType
+  uuid: String!
+  year: Int
+  yearAndSemesterName: String
+}
+
+input TimeTableFetchDtoInput {
+  semesterType: SemesterType
+  userUuid: String
+  year: Int
+}
+
+input TimeTableRegisterDtoInput {
+  entityStatus: EntityStatus
+  isFavorite: Boolean
+  name: String!
+  semester: SemesterType!
+  year: Int!
+}
+
+input TimeTableSchoolCourseRegisterDtoInput {
+  displayOrder: Int
+  entityStatus: EntityStatus
+  schoolCourseUuid: String
+  timeTableUuid: String
+}
+
+type TimeTableTemplate {
+  semester: SemesterType
+  year: Int
+}
+
+type TossTermResponse {
+  id: Long!
+  required: Boolean!
+  title: String
+  url: String
+  version: String
+}
+
+enum TossTermType {
+  ACCOUNT
+  BILLING
+  CARD
+  REGISTER
+}
+
+input TotiAnswerEditDtoInput {
+  changeLog: String
+  content: String
+  entityStatus: EntityStatus
+  isChoice: Boolean
+  uuid: String!
+}
+
+input TotiAnswerFetchDtoInput {
+  entityStatus: EntityStatus
+  isChoice: Boolean
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  questionUuid: String
+  sortType: TotiAnswerSortType
+  userUuid: String
+}
+
+type TotiAnswerMutationResponse {
+  entityStatus: EntityStatus!
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+type TotiAnswerPaginationResponse {
+  cursor: String
+  data: [TotiAnswerResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+input TotiAnswerRegisterDtoInput {
+  content: String!
+  entityStatus: EntityStatus
+  mentorUuid: String!
+  totiQuestionUuid: String!
+}
+
+type TotiAnswerResponse {
+  commentCount: Int
+  content: String!
+  createdBy: String!
+  createdDate: LocalDateTime!
+  entityStatus: EntityStatus!
+  isChoice: Boolean
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  likeCount: Long
+  totiMentor: TotiMentorResponse
+  totiQuestionUuid: String
+  user: UserEntityView!
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+enum TotiAnswerSortType {
+  RECENT
+  REGISTER
+}
+
+input TotiCommentEditDtoInput {
+  changeLog: String
+  comment: String
+  entityStatus: EntityStatus
+  uuid: String!
+}
+
+input TotiCommentFetchDtoInput {
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  parentEntityUuid: String
+  sortType: TotiCommentSortType
+  userUuid: String
+}
+
+type TotiCommentMutationResponse {
+  entityStatus: EntityStatus!
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+type TotiCommentPaginationResponse {
+  cursor: String
+  data: [TotiCommentResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+input TotiCommentRegisterDtoInput {
+  comment: String!
+  entityStatus: EntityStatus
+  parentEntityUuid: String!
+}
+
+type TotiCommentResponse {
+  comment: String!
+  createdBy: String!
+  createdDate: LocalDateTime!
+  entityStatus: EntityStatus!
+  isLikedByMe: Boolean
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  likeCount: Long
+  parentEntityUuid: String!
+  user: UserEntityView!
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+enum TotiCommentSortType {
+  RECENT
+  REGISTER
+}
+
+type TotiKeywordResponse {
+  code: String!
+  name: String!
+  uuid: String!
+}
+
+input TotiKeywordUserRegisterDtoInput {
+  entityStatus: EntityStatus
+  totiKeywordUuids: [String]!
+}
+
+input TotiMentorEditDtoInput {
+  applicationPass: String
+  applicationUnpass: String
+  bachelorCollege: String
+  bachelorMajor: String
+  changeLog: String
+  degreeCollege: String
+  degreeCourseType: DegreeCourseType
+  degreeMajor: String
+  entityStatus: EntityStatus
+  isHomeCollege: Boolean
+  labName: String
+  name: String
+  researchTitle: String
+  uuid: String!
+}
+
+input TotiMentorFetchDtoInput {
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  sortType: TotiMentorSortType
+  userUuid: String
+}
+
+type TotiMentorKeywordPaginationResponse {
+  cursor: String
+  data: [TotiMentorKeywordResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+type TotiMentorKeywordResponse {
+  createdBy: String!
+  createdDate: LocalDateTime!
+  entityStatus: EntityStatus!
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  totiKeywords: [TotiKeywordResponse]
+  totiMentor: TotiMentorResponse
+  uuid: String!
+}
+
+type TotiMentorMutationResponse {
+  entityStatus: EntityStatus!
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+type TotiMentorPaginationResponse {
+  cursor: String
+  data: [TotiMentorResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+input TotiMentorRegisterDtoInput {
+  applicationPass: String
+  applicationUnpass: String
+  bachelorCollege: String!
+  bachelorMajor: String!
+  degreeCollege: String!
+  degreeCourseType: DegreeCourseType!
+  degreeMajor: String!
+  entityStatus: EntityStatus
+  isHomeCollege: Boolean
+  labName: String
+  name: String!
+  researchTitle: String
+}
+
+type TotiMentorResponse {
+  applicationPass: String
+  applicationUnpass: String
+  bachelorCollege: String
+  bachelorMajor: String
+  createdBy: String!
+  createdDate: LocalDateTime!
+  degreeCollege: String!
+  degreeCourseType: DegreeCourseType!
+  degreeMajor: String!
+  entityStatus: EntityStatus!
+  isHomeCollege: Boolean
+  labName: String
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  name: String!
+  researchTitle: String
+  totiAnswerCount: Int
+  user: UserEntityView!
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+enum TotiMentorSortType {
+  POPULAR
+  RECENT
+  REGISTER
+}
+
+input TotiQuestionAnswerFetchDtoInput {
+  dateRange: DateRangeInput
+  isChoiceAnswer: Boolean
+  isCloseQuestion: Boolean
+  keywordUuids: [String]
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  queryType: TotiQuestionAnswerQueryType!
+  searchTitle: String
+  sortType: TotiQuestionAnswerSortType!
+  userUuid: String
+}
+
+type TotiQuestionAnswerPaginationResponse {
+  cursor: String
+  data: [TotiQuestionAnswerResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+enum TotiQuestionAnswerQueryType {
+  GENERAL
+  MYANSWER
+  MYQUESTION
+  TOTIKEYWORD
+  USERKEYWORD
+}
+
+type TotiQuestionAnswerResponse {
+  answerCount: Int
+  content: String!
+  createdBy: String!
+  createdDate: LocalDateTime!
+  entityStatus: EntityStatus!
+  isClose: Boolean
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  notifyCount: Int
+  title: String
+  topTotiAnswer: TotiAnswerResponse
+  user: UserEntityView!
+  uuid: String!
+}
+
+enum TotiQuestionAnswerSortType {
+  RECENT
+  REGISTER
+}
+
+type TotiQuestionDetailResponse {
+  answerCount: Int
+  commentCount: Int
+  content: String!
+  createdBy: String!
+  createdDate: LocalDateTime!
+  entityStatus: EntityStatus!
+  isClose: Boolean
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  myAnswerNotify: Boolean
+  notifyCount: Int
+  title: String
+  totiKeywords: [TotiKeywordResponse]!
+  user: UserEntityView!
+  userReports: [UserReportEntityView]
+  uuid: String!
+  vote: VoteEntityView
+}
+
+input TotiQuestionEditDtoInput {
+  changeLog: String
+  content: String
+  entityStatus: EntityStatus
+  isClose: Boolean
+  title: String
+  totiKeywordUuids: [String]
+  uuid: String!
+}
+
+input TotiQuestionFetchDtoInput {
+  dateRange: DateRangeInput
+  entityStatus: EntityStatus
+  isClose: Boolean
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  searchTitle: String
+  sortType: TotiQuestionSortType
+  userUuid: String
+}
+
+type TotiQuestionMutationResponse {
+  entityStatus: EntityStatus!
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+type TotiQuestionPaginationResponse {
+  cursor: String
+  data: [TotiQuestionResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+input TotiQuestionRegisterDtoInput {
+  content: String!
+  entityStatus: EntityStatus
+  title: String
+  totiKeywordUuids: [String]!
+  voteRegisterDto: VoteRegisterDtoInput
+}
+
+type TotiQuestionResponse {
+  answerCount: Int
+  content: String!
+  createdBy: String!
+  createdDate: LocalDateTime!
+  entityStatus: EntityStatus!
+  isClose: Boolean
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  notifyCount: Int
+  title: String
+  totiKeywords: [TotiKeywordResponse]!
+  user: UserEntityView!
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+enum TotiQuestionSortType {
+  ANSWER
+  NOTIFY
+  RECENT
+  REGISTER
+}
+
+"""
+Unrepresentable type
+"""
+scalar UNREPRESENTABLE
+
+input UserAppRoleRegisterDtoInput {
+  appRoleUuid: String
+  entityStatus: EntityStatus
+  userUuid: String
+}
+
+type UserAppRoleViewDto {
+  appRole: AppRoleViewDto
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  user: UserViewDto
+  uuid: String!
+}
+
+type UserChatEntityView {
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isAnonymous: Boolean
+  message: String
+  sender: UserEntityView
+  uuid: String!
+}
+
+input UserChatFetchDtoInput {
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  roomUuid: String!
+}
+
+type UserChatPaginationResultDto {
+  cursor: String
+  data: [UserChatEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+input UserChatRegisterDtoInput {
+  entityStatus: EntityStatus
+  message: String!
+  parentEntityType: EntityType!
+  parentEntityUuid: String!
+}
+
+input UserEditDtoInput {
+  accountNumber: String
+  bankName: String
+  bankUserName: String
+  changeLog: String
+  currentPassword: String
+  description: String
+  email: String
+  entityStatus: EntityStatus
+  fcmToken: String
+  files: [FAEntityFileRegisterDtoInput]
+  isPushNotificationOn: Boolean
+  major: String
+  name: String
+  password: String
+  phone: String
+  profileImageUrl: String
+  realName: String
+  schoolName: String
+  schoolType: CategoryRefType
+  schoolUuid: String
+  schoolVerificationStatus: SchoolVerificationStatus
+  studentType: StudentType
+  uuid: String
+}
+
+type UserEntityView {
+  accountNumber: String
+  bankName: String
+  bankUserName: String
+  birth: String
+  categoryRefType: CategoryRefType
+  createdDate: LocalDateTime
+  description: String
+  elapsedCreatedDate: String
+  email: String
+  emailToChange: String
+  entityStatus: EntityStatus
+  files: [FAEntityFileEntityView]
+  followId: Long
+  gender: GenderType
+  interestCategories: [InterestCategory]
+  isAdmin: Boolean
+  isBlocked: Boolean
+  isFollowedByMe: Boolean
+  isPushNotificationOn: Boolean
+  likeCount: Long
+  major: String
+  name: String
+  paymentStatus: UserPaymentStatus
+  phone: String
+  profileImage: String
+  profileImageUrl: String
+  provider: SocialProvider!
+  realName: String
+  recentFollowDate: LocalDateTime
+  reviewCount: Long
+  school: SchoolTypeEntityView
+  schoolCertificateFiles: [FAEntityFileEntityView]
+  schoolName: String
+  schoolType: CategoryRefType
+  schoolVerificationStatus: SchoolVerificationStatus
+  status: UserStatus
+  studentType: StudentType
+  totiQuestionCount: Int
+  unregisteredReason: String
+  userAvailablePrice: Int
+  userReports: [UserReportEntityView]
+  uuid: String!
+}
+
+input UserFetchDtoInput {
+  email: String
+  entityStatus: EntityStatus
+  fetchType: UserFetchType
+  major: String
+  name: String
+  paginationRequestDto: PaginationRequestDto_StringInput
+  realName: String
+  schoolUuid: String
+  schoolVerificationStatuses: [SchoolVerificationStatus]
+  sortType: UserSortType
+  userUuid: String
+}
+
+enum UserFetchType {
+  FOLLOWED
+  FOLLOWING
+}
+
+input UserInteractionDeleteDtoInput {
+  entityStatus: EntityStatus
+  parentEntityType: EntityType!
+  parentEntityUuid: String
+  userInteractionType: UserInteractionType!
+  userInteractionUuids: [String]
+  userUuid: String
+}
+
+input UserInteractionFetchDtoInput {
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  parentEntityType: EntityType
+  parentEntityUuid: String
+  userInteractionType: UserInteractionType
+  userUuid: String
+}
+
+type UserInteractionMutationResponse {
+  entityStatus: EntityStatus!
+  uuid: String!
+}
+
+type UserInteractionPaginationResponse {
+  cursor: String
+  data: [UserInteractionResponse]!
+  page: Long!
+  totalCount: Long!
+}
+
+input UserInteractionRegisterDtoInput {
+  entityStatus: EntityStatus
+  parentEntityType: EntityType!
+  parentEntityUuid: String!
+  userInteractionType: UserInteractionType!
+}
+
+type UserInteractionResponse {
+  blockUserName: String
+  createdBy: String!
+  createdDate: LocalDateTime!
+  entityStatus: EntityStatus!
+  lastModifiedBy: String!
+  lastModifiedDate: LocalDateTime!
+  parentEntityType: EntityType
+  parentEntityUuid: String!
+  user: UserEntityView!
+  userInteractionType: UserInteractionType
+  uuid: String!
+}
+
+enum UserInteractionType {
+  BLOCK
+  FOLLOW
+  LIKE
+  NOTIFY
+  SCRAP
+  VIEW
+}
+
+input UserMessageEditDtoInput {
+  changeLog: String
+  entityStatus: EntityStatus
+  isRead: Boolean
+  uuid: String!
+}
+
+type UserMessageEntityView {
+  anonymous: Boolean
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isRead: Boolean
+  message: String
+  receiver: UserEntityView
+  room: RoomEntityView
+  sender: UserEntityView
+  uuid: String!
+}
+
+input UserMessageFetchDtoInput {
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_StringInput!
+  roomUuid: String
+}
+
+type UserMessagePaginationResultDto {
+  cursor: String
+  data: [UserMessageEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+input UserMessageRegisterDtoInput {
+  entityStatus: EntityStatus
+  message: String!
+  parentEntityType: EntityType!
+  parentEntityUuid: String!
+}
+
+type UserMessageViewDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isAnonymous: Boolean
+  isRead: Boolean
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  message: String
+  receiver: UserViewDto
+  roomUuid: String
+  sender: UserViewDto
+  uuid: String!
+}
+
+input UserNotificationEditDtoInput {
+  changeLog: String
+  entityStatus: EntityStatus
+  isRead: Boolean
+  uuid: String!
+}
+
+input UserNotificationFetchDtoInput {
+  entityStatus: EntityStatus
+  paginationRequestDto: PaginationRequestDto_UserNotificationViewDtoInput!
+  userUuid: String!
+}
+
+type UserNotificationPaginationResultDto {
+  cursor: String
+  data: [UserNotificationViewDto]!
+  page: Long!
+  totalCount: Long!
+}
+
+input UserNotificationRegisterDtoInput {
+  entityStatus: EntityStatus
+  userUuid: String!
+}
+
+type UserNotificationViewDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isRead: Boolean
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  notification: NotificationViewDto
+  user: UserViewDto
+  uuid: String!
+}
+
+input UserNotificationViewDtoInput {
+  createdBy: String
+  createdDate: LocalDateTime
+  entityStatus: EntityStatus
+  isRead: Boolean
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  notification: NotificationViewDtoInput
+  user: UserViewDtoInput
+  uuid: String
+}
+
+type UserPaginationResultDto {
+  cursor: String
+  data: [UserEntityView]!
+  page: Long!
+  totalCount: Long!
+}
+
+enum UserPaymentStatus {
+  NONE
+  PLAN_A
+}
+
+input UserRegisterDtoInput {
+  birth: String
+  email: String
+  entityStatus: EntityStatus
+  fcmToken: String
+  gender: GenderType
+  interestCategories: [InterestCategory]
+  name: String
+  password: String
+  phone: String
+  profileImageUrl: String
+  provider: SocialProvider
+  providerId: String
+  providerToken: String
+  realName: String
+  status: UserStatus
+  studentType: StudentType
+}
+
+type UserReportEntityView {
+  content: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  parentEntityType: EntityType
+  parentEntityUuid: String
+  reported: UserEntityView!
+  reporter: UserEntityView!
+  userReportType: UserReportType!
+  uuid: String!
+}
+
+input UserReportRegisterDtoInput {
+  content: String
+  entityStatus: EntityStatus
+  parentEntityType: EntityType!
+  parentEntityUuid: String!
+  reportedUuid: String!
+  userReportType: UserReportType!
+}
+
+enum UserReportType {
+  ABUSE
+  EDIT_REQUEST
+}
+
+type UserReportViewDto {
+  content: String
+  createdBy: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  parentEntityType: EntityType
+  parentEntityUuid: String
+  reported: UserViewDto!
+  reporter: UserViewDto!
+  userReportType: UserReportType!
+  uuid: String!
+}
+
+input UserReportViewDtoInput {
+  content: String
+  createdBy: String
+  createdDate: LocalDateTime
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  parentEntityType: EntityType
+  parentEntityUuid: String
+  reported: UserViewDtoInput
+  reporter: UserViewDtoInput
+  userReportType: UserReportType
+  uuid: String
+}
+
+input UserSearchFilterDtoInput {
+  key: UserSearchKeyType
+  value: String
+}
+
+enum UserSearchKeyType {
+  EMAIL
+  NAME
+  PHONE
+}
+
+enum UserSortType {
+  FOLL0W_RECENT
+  RECENT
+  SCHOOL_VERIFICATION_STATUS
+}
+
+type UserStatisticsViewDto {
+  createdBy: String
+  createdDate: LocalDateTime
+  dateAndActivatedUsers: Map_LocalDate_List_UserViewDtoScalar
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  uuid: String!
+}
+
+enum UserStatus {
+  ACTIVATED
+  DEACTIVATED
+  NOT_VERIFIED
+}
+
+type UserViewDto {
+  accountNumber: String
+  bankName: String
+  bankUserName: String
+  birth: String
+  categoryRefType: CategoryRefType
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  elapsedCreatedDate: String
+  email: String
+  emailToChange: String
+  entityStatus: EntityStatus
+  files: [FAEntityFileViewDto]
+  followId: Long
+  followedByMe: Boolean
+  gender: GenderType
+  interestCategories: [InterestCategory]
+  isAdmin: Boolean
+  isBlocked: Boolean
+  isFollowedByMe: Boolean
+  isPushNotificationOn: Boolean!
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  likeCount: Long
+  major: String
+  mentorUuid: String
+  name: String
+  paymentStatus: UserPaymentStatus
+  phone: String
+  profileImage: String
+  profileImageUrl: String
+  provider: SocialProvider!
+  realName: String
+  recentFollowDate: LocalDateTime
+  reviewCount: Long
+  school: SchoolTypeViewDto
+  schoolCertificateFiles: [FAEntityFileViewDto]
+  schoolName: String
+  schoolType: CategoryRefType!
+  schoolVerificationStatus: SchoolVerificationStatus!
+  status: UserStatus
+  studentType: StudentType!
+  unregisteredReason: String
+  userAvailablePrice: Int
+  userReports: [UserReportViewDto]
+  uuid: String!
+}
+
+input UserViewDtoInput {
+  accountNumber: String
+  bankName: String
+  bankUserName: String
+  birth: String
+  categoryRefType: CategoryRefType
+  createdBy: String
+  createdDate: LocalDateTime
+  description: String
+  email: String
+  emailToChange: String
+  entityStatus: EntityStatus
+  files: [FAEntityFileViewDtoInput]
+  followId: Long
+  gender: GenderType
+  interestCategories: [InterestCategory]
+  isAdmin: Boolean
+  isBlocked: Boolean
+  isFollowedByMe: Boolean
+  isPushNotificationOn: Boolean
+  lastModifiedBy: String
+  lastModifiedDate: LocalDateTime
+  likeCount: Long
+  major: String
+  mentorUuid: String
+  name: String
+  paymentStatus: UserPaymentStatus
+  phone: String
+  profileImage: String
+  profileImageUrl: String
+  provider: SocialProvider
+  realName: String
+  recentFollowDate: LocalDateTime
+  reviewCount: Long
+  school: SchoolTypeViewDtoInput
+  schoolCertificateFiles: [FAEntityFileViewDtoInput]
+  schoolName: String
+  schoolType: CategoryRefType
+  schoolVerificationStatus: SchoolVerificationStatus
+  status: UserStatus
+  studentType: StudentType
+  unregisteredReason: String
+  userAvailablePrice: Int
+  userReports: [UserReportViewDtoInput]
+  uuid: String
+}
+
+input VoteEditDtoInput {
+  changeLog: String
+  entityStatus: EntityStatus
+  isDone: Boolean
+  selectedContentUuids: [String]
+  uuid: String!
+}
+
+type VoteEntityView {
+  contents: [VoteItemEntityView]!
+  createdDate: LocalDateTime
+  deadline: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isDone: Boolean!
+  numChoice: Int!
+  numParticipant: Int!
+  title: String!
+  uuid: String!
+}
+
+type VoteItemEntityView {
+  content: String
+  createdDate: LocalDateTime
+  elapsedCreatedDate: String
+  entityStatus: EntityStatus
+  isVoted: Boolean
+  numVote: Int
+  uuid: String!
+}
+
+input VoteRegisterDtoInput {
+  contents: [String]!
+  deadline: LocalDateTime
+  entityStatus: EntityStatus
+  numChoice: Int!
+  title: String!
+}

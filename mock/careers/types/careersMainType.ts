@@ -1,0 +1,29 @@
+export default interface CareersMainType {
+  uuid: string;
+  createdDate: string;
+  lastModifiedDate: string;
+  recruitmentUid: string;
+  title: string;
+  content: string;
+  thumbnailUrl: string;
+  recruitmentAnnouncementLink: string;
+  recruitmentStartDate: string;
+  recruitmentDeadlineDate: string;
+  workStartDate: string;
+  workEndDate: string;
+  yearsMin: number;
+  yearsMax: number;
+  companyType: string;
+  companyName: string;
+  companyAddress: string;
+  sourceCompanyName: string;
+  sourceCompanyAddress: string;
+  industryTypes: { key: string; value: string }[];
+  isBookmarked: boolean;
+  recruitmentJobs: { [key: string]: { key: string; value: string }[] };
+  recruitmentTypes: { key: string; value: string }[];
+  educations: { key: string; value: string }[];
+  regions: { key: string; value: string }[];
+  deadlineType: { key: string; value: string };
+  isAdminRegistered: boolean;
+}

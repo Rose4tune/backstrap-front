@@ -1,0 +1,24 @@
+fragment VoteBase on VoteEntityView {
+  uuid
+}
+
+fragment VoteSummary on VoteEntityView {
+  ...VoteBase
+
+  title
+  deadline
+  isDone
+  numChoice
+  numParticipant
+}
+
+fragment VoteDetail on VoteEntityView {
+  ...VoteSummary
+
+  contents {
+    uuid
+    content
+    numVote
+    isVoted
+  }
+}

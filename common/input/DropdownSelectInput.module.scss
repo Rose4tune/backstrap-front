@@ -1,0 +1,33 @@
+.select-input {
+  @apply w-full;
+
+  & :global(.dropdown-select__control) {
+    @apply h-12 px-4 leading-4;
+    @apply rounded-lg border border-[#566789] border-opacity-[26%] #{!important};
+  }
+
+  & :global(.dropdown-select__placeholder) {
+    @apply mx-0;
+  }
+
+  & :global(.dropdown-select__indicator) {
+    @apply py-0 px-0 sm:px-1;
+  }
+
+  & :global(.dropdown-select__menu) {
+  }
+
+  & :global(.dropdown-select__menu-list) {
+  }
+
+  & :global(.dropdown-select__option) {
+    @apply relative;
+    &:global(.dropdown-select__option--is-selected) {
+      @apply bg-point-blue bg-opacity-10;
+    }
+
+    &:after {
+      @apply content-[""] absolute bottom-0 left-2 right-2 border-b border-[#E5E5EB];
+    }
+  }
+}

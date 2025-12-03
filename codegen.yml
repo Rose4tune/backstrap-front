@@ -1,0 +1,15 @@
+overwrite: true
+# schema: "https://apiv2.bagstrap.team/graphql"
+schema: 'http://dev.bagstrap.team/graphql'
+#  ${GQL_SCHEMA_PATH}
+documents: '**/*.graphql'
+generates:
+  ./generated/graphql.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+      - 'fragment-matcher'
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'

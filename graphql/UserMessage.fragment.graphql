@@ -1,0 +1,35 @@
+fragment UserMessageBase on UserMessageEntityView {
+  uuid
+}
+
+fragment UserMessageSummary on UserMessageEntityView {
+  ...UserMessageBase
+
+  message
+  isRead
+  anonymous
+  createdDate
+
+  room {
+    uuid
+  }
+
+  sender {
+    uuid
+    accountNumber
+    provider
+    name
+    profileImage
+    profileImageUrl
+    school {
+      code
+      name
+      region
+      uuid
+    }
+  }
+}
+
+fragment UserMessageDetail on UserMessageEntityView {
+  ...UserMessageSummary
+}

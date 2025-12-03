@@ -1,0 +1,18 @@
+fragment FAGroupBase on FAGroupViewDto {
+  uuid
+  code
+}
+
+fragment FAGroupSummary on FAGroupViewDto {
+  ...FAGroupBase
+
+  name
+  description
+  iconUrl
+  subGroupType
+  writable
+}
+
+fragment FAGroupDetail on FAGroupViewDto {
+  ...FAGroupSummary
+}

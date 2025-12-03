@@ -1,0 +1,15 @@
+mutation RegisterReview($input: ReviewRegisterDtoInput!) {
+  registerReview(registerDto: $input) {
+    ...ReviewBase
+  }
+}
+
+mutation EditReview($input: ReviewEditDtoInput!) {
+  editReview(editDto: $input) {
+    ...ReviewBase
+  }
+}
+
+mutation DeleteReview($uuid: String!) {
+  deleteReview(reviewUuid: $uuid)
+}

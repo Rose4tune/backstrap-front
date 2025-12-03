@@ -1,0 +1,23 @@
+fragment UserReportBase on UserReportEntityView {
+  uuid
+}
+
+fragment UserReportSummary on UserReportEntityView {
+  ...UserReportBase
+
+  content
+  userReportType
+  createdDate
+}
+
+fragment UserReportDetail on UserReportEntityView {
+  ...UserReportSummary
+
+  reporter {
+    ...UserSummary
+  }
+
+  reported {
+    ...UserSummary
+  }
+}

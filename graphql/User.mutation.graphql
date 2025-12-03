@@ -1,0 +1,23 @@
+mutation CreateUser($input: UserRegisterDtoInput!) {
+  createUser(registerDto: $input) {
+    ...UserBase
+  }
+}
+
+mutation EditUser($input: UserEditDtoInput!) {
+  editUser(editDto: $input) {
+    ...UserBase
+
+    schoolVerificationStatus
+  }
+}
+
+mutation ResetUserPassword($email: String!, $password: String!) {
+  resetUserPassword(email: $email, password: $password) {
+    uuid
+  }
+}
+
+mutation SetDefaultProfileImage {
+  setDefaultProfileImage
+}

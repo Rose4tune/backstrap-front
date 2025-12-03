@@ -1,0 +1,12 @@
+mutation RegisterUserMessage($input: UserMessageRegisterDtoInput!) {
+  registerUserMessage(registerDto: $input) {
+    uuid
+    roomUuid
+  }
+}
+
+mutation EditUserMessage($input: UserMessageEditDtoInput!) {
+  editUserMessage(editDto: $input) {
+    uuid
+  }
+}

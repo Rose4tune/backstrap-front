@@ -1,0 +1,14 @@
+@layer components {
+  /** normal **/
+  .input {
+    @apply text-left;
+    @apply text-black;
+    @apply box-border;
+    @apply pl-4 pr-1.5;
+  }
+
+  // state
+  .input.disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+}

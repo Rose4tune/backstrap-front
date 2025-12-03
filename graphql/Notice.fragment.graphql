@@ -1,0 +1,16 @@
+fragment NoticeBase on NoticeEntityView {
+  uuid
+}
+
+fragment NoticeData on NoticeEntityView {
+  ...NoticeBase
+
+  content
+  createdDate
+  createdUserId
+  elapsedCreatedDate
+  entityStatus
+  isLikedByMe
+  likeCount
+  title
+}

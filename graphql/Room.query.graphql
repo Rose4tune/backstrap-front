@@ -1,0 +1,15 @@
+query Room($uuid: String!) {
+  room(uuid: $uuid) {
+    ...RoomDetail
+  }
+}
+
+query Rooms($input: RoomFetchDtoInput!) {
+  roomsByCursor(fetchDto: $input) {
+    cursor
+
+    data {
+      ...RoomSummary
+    }
+  }
+}

@@ -1,0 +1,56 @@
+fragment TimeTableBase on TimeTableEntityView {
+  customCourses {
+    dayAndTimeRanges: dayAndTimeRanges {
+      dayOfWeek
+      timeRange {
+        fromTime
+        toTime
+      }
+    }
+    entityStatus
+    professors
+    subjectName
+    timeTableUuid
+    uuid
+  }
+  entityStatus
+  isFavorite
+  name
+  schoolCourses {
+    academyYear
+    categoryRefSchoolCourses {
+      entityStatus
+      leaf
+      scraped
+      uuid
+    }
+    code
+    dayAndTimeRanges {
+      dayOfWeek
+      timeRange {
+        fromTime
+        toTime
+      }
+    }
+    divisionCode
+    engSubjectName
+    entityStatus
+    grade
+    kindsCode
+    kindsName
+    numBooking
+    practiceDivisionCode
+    professors
+    roomName
+    semester
+    studentYear
+    subDescription
+    subjectName
+    time
+    uuid
+  }
+  semester
+  uuid
+  year
+  yearAndSemesterName
+}

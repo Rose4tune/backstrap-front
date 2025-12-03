@@ -1,0 +1,15 @@
+mutation RegisterBoard($input: BoardRegisterDtoInput!) {
+  registerBoard(registerDto: $input) {
+    ...BoardBase
+  }
+}
+
+mutation EditBoard($input: BoardEditDtoInput!) {
+  editBoard(editDto: $input) {
+    ...BoardBase
+  }
+}
+
+mutation DeleteBoard($uuid: String!) {
+  deleteBoard(uuid: $uuid)
+}

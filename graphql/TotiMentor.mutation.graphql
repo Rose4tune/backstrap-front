@@ -1,0 +1,6 @@
+mutation registerTotiMentor($input: TotiMentorRegisterDtoInput) {
+  registerTotiMentor(registerDto: $input) {
+    entityStatus
+    uuid
+  }
+}

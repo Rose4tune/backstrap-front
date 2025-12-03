@@ -1,0 +1,9 @@
+mutation RegisterUserInteraction($input: UserInteractionRegisterDtoInput!) {
+  registerUserInteraction(userInteractionRegisterDto: $input) {
+    uuid
+  }
+}
+
+mutation DeleteUserInteraction($input: UserInteractionDeleteDtoInput!) {
+  deleteUserInteraction(userInteractionDeleteDto: $input)
+}

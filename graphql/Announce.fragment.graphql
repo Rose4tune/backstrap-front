@@ -1,0 +1,23 @@
+fragment AnnounceBase on AnnounceResponse {
+  announceType
+  company
+  content
+  createdBy
+  createdDate
+  entityStatus
+  imageUrl
+  labKeywords {
+    code
+    name
+    uuid
+  }
+  totiKeywords {
+    code
+    name
+    uuid
+  }
+  lastModifiedBy
+  lastModifiedDate
+  title
+  uuid
+}

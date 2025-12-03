@@ -1,0 +1,8 @@
+<svg viewBox="0 0 16 17" fill="none"
+  xmlns="http://www.w3.org/2000/svg">
+  <circle cx="8" cy="8.5" r="8" fill="currentColor"/>
+  <rect x="4.26758" y="4.76562" width="7.46667" height="7.46667" fill="white"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.60065 6.89688H5.33398V5.79688H9.60065V6.89688Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6673 9.02969H5.33398V7.92969H10.6673V9.02969Z" fill="currentColor"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.46732 11.1703H5.33398V10.0703H7.46732V11.1703Z" fill="currentColor"/>
+</svg>

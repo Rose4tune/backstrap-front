@@ -1,0 +1,67 @@
+query HomeBoards($uuidFree: String, $uuidSecret: String) {
+  boardsByCursorFree: boardsByCursor(
+    fetchDto: { groupUuid: $uuidFree, paginationRequestDto: { count: 5 } }
+  ) {
+    data {
+      ...BoardSummary
+    }
+  }
+
+  boardsByCursorSecret: boardsByCursor(
+    fetchDto: { groupUuid: $uuidSecret, paginationRequestDto: { count: 5 } }
+  ) {
+    data {
+      ...BoardSummary
+    }
+  }
+
+  infoBoardsByCursor: infoBoardsByCursor(
+    fetchDto: { paginationRequestDto: { count: 5 } }
+  ) {
+    data {
+      ...BoardSummary
+    }
+  }
+}
+
+query Board($uuid: String!) {
+  board(uuid: $uuid) {
+    ...BoardDetail
+  }
+}
+
+query BoardMy($uuid: String!) {
+  board(uuid: $uuid) {
+    ...BoardBase
+
+    likeCount
+    bookmarkCount
+    isBookmarkedByMe
+    isLikedByMe
+    vote {
+      ...VoteDetail
+    }
+  }
+}
+
+query Boards($input: BoardFetchDtoInput!) {
+  boardsByCursor(fetchDto: $input) {
+    cursor
+    page
+    totalCount
+    data {
+      ...BoardSummary
+    }
+  }
+}
+
+query BoardsDetail($input: BoardFetchDtoInput!) {
+  boardsByCursor(fetchDto: $input) {
+    cursor
+    page
+    totalCount
+    data {
+      ...BoardDetail
+    }
+  }
+}

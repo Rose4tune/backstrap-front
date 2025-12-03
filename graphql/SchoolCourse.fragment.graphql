@@ -1,0 +1,43 @@
+fragment BaseSchoolCourse on SchoolCourseEntityView {
+  academyYear
+  categoryRefSchoolCourses {
+    createdDate
+    elapsedCreatedDate
+    entityStatus
+    leaf
+    scraped
+    uuid
+  }
+  code
+  createdDate
+  dayAndTimeRanges {
+    dayOfWeek
+    timeRange {
+      fromTime
+      toTime
+    }
+  }
+  divisionCode
+  elapsedCreatedDate
+  engSubjectName
+  entityStatus
+  extras
+  grade
+  isClosed
+  kindsCode
+  kindsName
+  numBooking
+  planUrl
+  practiceDivisionCode
+  professors
+  roomName
+  semester
+  studentYear
+  subDescription
+  subjectName
+  time
+  userReports {
+    uuid
+  }
+  uuid
+}

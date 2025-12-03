@@ -1,0 +1,12 @@
+query TimeTables($input: TimeTableFetchDtoInput) {
+  timeTables(fetchDto: $input) {
+    ...TimeTableBase
+  }
+}
+
+query TimeTableTemplates {
+  timeTableTemplates {
+    semester
+    year
+  }
+}

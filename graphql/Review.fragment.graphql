@@ -1,0 +1,61 @@
+fragment ReviewBase on ReviewViewDto {
+  uuid
+}
+
+fragment ReviewSummary on ReviewViewDto {
+  ...ReviewBase
+
+  content
+  isAnonymous
+  isLikedByMe
+  likeCount
+  entityStatus
+  createdDate
+
+  user {
+    uuid
+    name
+    profileImage
+    profileImageUrl
+    schoolName
+    schoolVerificationStatus
+    school {
+      name
+    }
+  }
+
+  parentEntityType
+  parentEntityUuid
+  parentReviewUuid
+
+  childReviews {
+    ...ReviewBase
+
+    content
+    isAnonymous
+    isLikedByMe
+    likeCount
+    entityStatus
+    createdDate
+
+    parentEntityType
+    parentEntityUuid
+    parentReviewUuid
+
+    user {
+      uuid
+      name
+      profileImage
+      profileImageUrl
+      schoolVerificationStatus
+      schoolName
+      school {
+        name
+      }
+    }
+  }
+}
+
+fragment ReviewDetail on ReviewViewDto {
+  ...ReviewSummary
+}

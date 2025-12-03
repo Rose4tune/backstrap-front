@@ -1,0 +1,12 @@
+query UserNotificationCount {
+  userNotificationCount
+}
+
+query UserNotifications($input: UserNotificationFetchDtoInput!) {
+  userNotificationsByCursor(fetchDto: $input) {
+    cursor
+    data {
+      ...UserNotificationSummary
+    }
+  }
+}

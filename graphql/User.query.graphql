@@ -1,0 +1,17 @@
+query User($uuid: String!) {
+  user(uuid: $uuid) {
+    ...UserDetail
+  }
+}
+
+query CheckPassword($password: String!) {
+  checkPassword(password: $password)
+}
+
+query ExistsNickName($nickname: String!) {
+  existsNickName(nickname: $nickname)
+}
+
+query CheckEmailExists($email: String!) {
+  checkEmailExists(email: $email)
+}

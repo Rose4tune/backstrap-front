@@ -1,0 +1,5 @@
+mutation RegisterUserReport($input: UserReportRegisterDtoInput!) {
+  registerUserReport(registerDto: $input) {
+    ...UserReportBase
+  }
+}

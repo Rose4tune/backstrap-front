@@ -1,0 +1,19 @@
+fragment UserNotificationBase on UserNotificationViewDto {
+  uuid
+}
+
+fragment UserNotificationSummary on UserNotificationViewDto {
+  ...UserNotificationBase
+
+  isRead
+  createdDate
+  elapsedCreatedDate
+
+  notification {
+    ...NotificationDetail
+  }
+}
+
+fragment UserNotificationDetail on UserNotificationViewDto {
+  ...UserNotificationSummary
+}

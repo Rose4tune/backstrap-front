@@ -1,0 +1,19 @@
+fragment UserBase on UserEntityView {
+  uuid
+  accountNumber
+}
+
+fragment UserSummary on UserEntityView {
+  ...UserBase
+
+  name
+  profileImage
+  profileImageUrl
+  school {
+    name
+  }
+}
+
+fragment UserDetail on UserEntityView {
+  ...UserSummary
+}

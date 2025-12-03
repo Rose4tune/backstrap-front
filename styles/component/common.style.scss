@@ -1,0 +1,27 @@
+@layer components {
+  // size
+  .size-xs {
+    @apply h-8 sm:h-8 md:h-9 lg:h-9;
+    @apply text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px];
+  }
+
+  .size-sm {
+    @apply h-9 sm:h-9 md:h-10 lg:h-10;
+    @apply text-[12px] sm:text-[12px] md:text-[14px] lg:text-[14px];
+  }
+
+  .size-md {
+    @apply h-10 sm:h-10 md:h-11 lg:h-11;
+    @apply text-[14px] sm:text-[14px] md:text-[15px] lg:text-[15px];
+  }
+
+  .size-lg {
+    @apply h-11 sm:h-11 md:h-12 lg:h-12;
+    @apply text-[15px] sm:text-[15px] md:text-[16px] lg:text-[16px];
+  }
+
+  .size-xl {
+    @apply h-12 sm:h-12 md:h-[52px] lg:h-[52px];
+    @apply text-[16px] sm:text-[16px] md:text-[17px] lg:text-[17px];
+  }
+}

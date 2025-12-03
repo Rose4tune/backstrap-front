@@ -1,0 +1,9 @@
+mutation ReadAllUserNotification {
+  readAllUserNotification
+}
+
+mutation EditUserNotification($input: UserNotificationEditDtoInput!) {
+  editUserNotification(editDto: $input) {
+    ...UserNotificationBase
+  }
+}

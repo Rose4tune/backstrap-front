@@ -1,0 +1,15 @@
+mutation RegisterNotice($input: NoticeRegisterDtoInput!) {
+  registerNotice(registerDto: $input) {
+    ...NoticeBase
+  }
+}
+
+mutation EditNotice($input: NoticeEditDtoInput!) {
+  editNotice(editDto: $input) {
+    ...NoticeBase
+  }
+}
+
+mutation DeleteNotice($uuid: String) {
+  deleteNotice(uuid: $uuid)
+}
