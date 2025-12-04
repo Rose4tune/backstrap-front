@@ -36,6 +36,7 @@ import SchoolUserLankMobile from 'src/components/home/mobile/SchoolUserRankMobil
 import GlobalHeader from 'src/components/header/GlobalHeader';
 import Footer from 'elements/Footer';
 import MobileHomeHeader from 'src/components/home/mobile/MobileHomeHeader';
+import ResearcherProfessorJobSection from '@components/careers/ResearcherProfessorJobSection';
 
 type GetYoutubeUrlsResponse = string[] | null;
 
@@ -134,7 +135,9 @@ const IndexPage: NextPage<IndexPageProps> = ({
                 <LabGuideSectionDesktop />
                 <SchoolUserLankDesktop />
               </div>
-              <HotRecruitSectionDesktop hotRecruitList={hotRecruitList} />
+              {/* <HotRecruitSectionDesktop hotRecruitList={hotRecruitList} /> */}
+
+              <ResearcherProfessorJobSection />
               <RecruitSectionDesktop recruitList={recruitList} educationLevel={educationLevel} />
               <YoutubeSectionDesktop youtubeList={youtubeList} />
               {imageUrl && clickLink && <BottomBanner imageUrl={imageUrl} clickLink={clickLink} />}

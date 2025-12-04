@@ -39,7 +39,7 @@ const ResearcherProfessorJobSection = observer(() => {
   return (
     <ResearcherProfessorJobSectionContainer>
       <CareerSection
-        title="연구원/교수 임용"
+        title="연구직 채용 소식"
         type="large"
         items={visibleItems}
         viewAllHref="/careers/jinhak"
