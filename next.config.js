@@ -87,17 +87,27 @@ module.exports = {
   async rewrites() {
     const restApiEndpoint = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
     
-    // 환경 변수가 설정되어 있으면 프록시 설정
-    if (restApiEndpoint) {
-      return [
-        {
-          source: '/api/:path*',
-          destination: `${restApiEndpoint}/api/:path*`,
-        },
-      ];
+    // 환경 변수가 유효한지 검증 (존재하고, 빈 문자열이 아니며, http:// 또는 https://로 시작)
+    if (
+      restApiEndpoint && 
+      restApiEndpoint.trim() !== '' && 
+      (restApiEndpoint.startsWith('http://') || restApiEndpoint.startsWith('https://'))
+    ) {
+      // destination URL이 올바른 형식인지 확인
+      const destination = `${restApiEndpoint}/api/:path*`;
+      
+      // destination이 유효한 형식인지 재확인
+      if (destination.startsWith('http://') || destination.startsWith('https://')) {
+        return [
+          {
+            source: '/api/:path*',
+            destination: destination,
+          },
+        ];
+      }
     }
     
-    // 환경 변수가 없으면 빈 배열 반환 (프록시 없음)
+    // 환경 변수가 없거나 유효하지 않으면 빈 배열 반환 (프록시 없음)
     return [];
   }
 };
