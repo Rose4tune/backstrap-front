@@ -5,6 +5,9 @@ import createEmotionServer from '@emotion/server/create-instance';
 import { cache } from '@styles/emotion-cache';
 
 const GTM_CONTAINER_ID = process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
+// BASE_URL: 환경 변수가 있으면 사용, 없으면 Vercel 배포 URL 사용
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 
+                 (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://backstrap-front.vercel.app');
 
 class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -52,7 +55,7 @@ class CustomDocument extends Document {
 
           {/* open graph */}
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://www.bagstrap.team" />
+          <meta property="og:url" content={BASE_URL} />
           <meta property="og:title" content="똑똑한 대학원 커뮤니티 생활, 가방끈" />
           <meta
             property="og:description"
@@ -60,7 +63,7 @@ class CustomDocument extends Document {
           />
           <meta
             property="og:image"
-            content="https://www.bagstrap.team/logos/defaultPreview.png"
+            content={`${BASE_URL}/logos/defaultPreview.png`}
           />
 
           {/* twitter card */}

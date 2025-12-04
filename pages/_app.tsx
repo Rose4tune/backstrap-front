@@ -47,6 +47,9 @@ const GTM_CONTAINER_ID = process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
 const KAKAO_JAVASCRIPT_KEY = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY;
 const APPLEID_CLIENT_ID = process.env.NEXT_PUBLIC_APPLEID_CLIENT_ID ?? '';
 const APPLEID_SIGNIN_REDIRECT_URI = process.env.NEXT_PUBLIC_APPLEID_SIGNIN_REDIRECT_URI;
+// BASE_URL: 환경 변수가 있으면 사용, 없으면 Vercel 배포 URL 사용
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 
+                 (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://backstrap-front.vercel.app');
 
 function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps);
@@ -275,7 +278,7 @@ function App({ Component, pageProps }: AppProps) {
 
         {/* open graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.bagstrap.team" />
+        <meta property="og:url" content={BASE_URL} />
         <meta property="og:title" content="똑똑한 대학원 커뮤니티 생활, 가방끈" />
         <meta
           property="og:description"
@@ -283,7 +286,7 @@ function App({ Component, pageProps }: AppProps) {
         />
         <meta
           property="og:image"
-          content="https://www.bagstrap.team/logos/logo-bagstrap-symbol.svg"
+          content={`${BASE_URL}/logos/logo-bagstrap-symbol.svg`}
         />
 
         {/* twitter card */}

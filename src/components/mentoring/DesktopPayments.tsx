@@ -18,11 +18,18 @@ import { useRouter } from 'next/router';
 import PaymentsLoginAttractionPopup from './mentoringPaymentsPageComponents/PaymentsLoginAttractionPopup';
 import GlobalHeader from '../header/GlobalHeader';
 
-//process.env 안먹음 이슈
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://www.bagstrap.team';
+// 동적으로 현재 호스트를 감지하여 BASE_URL 설정
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  // 서버 사이드에서는 환경 변수 또는 기본값 사용
+  return process.env.NEXT_PUBLIC_BASE_URL || 
+         (process.env.NODE_ENV === 'development' 
+           ? 'http://localhost:3000' 
+           : 'https://backstrap-front.vercel.app');
+};
+const BASE_URL = getBaseUrl();
 type MentorViewDto = components['schemas']['MentorViewDto'];
 
 type UserViewDto = components['schemas']['UserViewDto'];

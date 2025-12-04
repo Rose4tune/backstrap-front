@@ -83,5 +83,21 @@ module.exports = {
   },
   env: {
     BASE_URL: `${process.env.NEXT_PUBLIC_BASE_SERVICE_PROTOCOL}://${process.env.NEXT_PUBLIC_BASE_SERVICE_DOMAIN}`
+  },
+  async rewrites() {
+    const restApiEndpoint = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
+    
+    // 환경 변수가 설정되어 있으면 프록시 설정
+    if (restApiEndpoint) {
+      return [
+        {
+          source: '/api/:path*',
+          destination: `${restApiEndpoint}/api/:path*`,
+        },
+      ];
+    }
+    
+    // 환경 변수가 없으면 빈 배열 반환 (프록시 없음)
+    return [];
   }
 };
