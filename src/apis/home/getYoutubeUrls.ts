@@ -5,7 +5,7 @@ type GetYoutubeUrlsResponse = string[] | null;
 
 export default async function getYoutubeUrls(): Promise<ApiResponse<GetYoutubeUrlsResponse>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/home/get-youtube-urls`;
+    const requestUrl = `/api/v1/home/get-youtube-urls`;
 
     try {
         const response = await axios.get(requestUrl, {

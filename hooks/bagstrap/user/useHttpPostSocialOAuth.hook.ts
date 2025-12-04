@@ -10,7 +10,7 @@ export default function useHttpPostSocialOAuth(): [
   State<string, AuthPayload>,
   (token: string, provider: "APPLE" | "FACEBOOK" | "KAKAOTALK") => void
 ] {
-  const url = `${REST_API_ENDPOINT}${API_PATH_SOCIAL_OAUTH}`;
+  const url = `${API_PATH_SOCIAL_OAUTH}`;
 
   const [state, request] = useHttpPost<string, AuthPayload>(url, {
     headers: {

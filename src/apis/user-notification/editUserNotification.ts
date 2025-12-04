@@ -10,7 +10,7 @@ export default async function editUserNotification(
   accessToken?: string
 ): Promise<ApiResponse<EditUserNotificationResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-notification/edit`;
+  const requestUrl = `/api/v1/user-notification/edit`;
 
   const requestBody: EditUserNotification = {
     uuid:params.uuid,

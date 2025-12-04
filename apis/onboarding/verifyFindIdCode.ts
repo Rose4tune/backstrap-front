@@ -6,7 +6,7 @@ export async function verifyFindIdCode(
   code: string
 ): Promise<ApiResponse<string>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const REQUEST_URL = `${REST_API_ENDPOINT}/api/v1/sms/verify-find-id`;
+  const REQUEST_URL = `/api/v1/sms/verify-find-id`;
 
   try {
     const { status, data } = await axios.post<string>(REQUEST_URL, null, {

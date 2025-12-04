@@ -9,7 +9,7 @@ export type { BoardEntityView as RecommendPost };
 
 export default async function getRecommends(boardUuid?: string): Promise<ApiResponse<BoardEntityView[]>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/board/get-recommends`;
+  const requestUrl = `/api/v1/board/get-recommends`;
 
   try {
     const response = await axios.get(requestUrl, {

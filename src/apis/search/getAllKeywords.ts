@@ -8,7 +8,7 @@ export async function getAllKeywords(
   accessToken?: string
 ): Promise<ApiResponse<KeywordViewDto[]>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/keyword/get-all`;
+  const requestUrl = `/api/v1/keyword/get-all`;
 
   try {
     const response = await axios.get<KeywordViewDto[]>(requestUrl, {

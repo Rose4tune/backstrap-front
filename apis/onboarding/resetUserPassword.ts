@@ -6,7 +6,7 @@ export async function resetUserPassword(
   password: string
 ): Promise<ApiResponse<boolean>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user/reset-user-password`;
+  const requestUrl = `/api/v1/user/reset-user-password`;
 
   try {
     const response = await axios.post(requestUrl, null, {

@@ -8,7 +8,7 @@ export default async function deleteTimeTable(
     accessToken: string
 ): Promise<ApiResponse<null>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/time-table/delete?uuid=${uuid}`;
+    const requestUrl = `/api/v1/time-table/delete?uuid=${uuid}`;
 
     try {
         const response = await axios.post(requestUrl, null, {

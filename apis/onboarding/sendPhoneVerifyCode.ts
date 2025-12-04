@@ -5,7 +5,7 @@ export async function sendPhoneVerifyCode(
   phoneNumber: string
 ): Promise<ApiResponse<void>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/sms/send-phone-verify-code`;
+  const requestUrl = `/api/v1/sms/send-phone-verify-code`;
   try {
     const response = await axios.get<boolean>(requestUrl, {
       params: { phone: phoneNumber },

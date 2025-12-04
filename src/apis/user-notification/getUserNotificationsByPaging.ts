@@ -10,7 +10,7 @@ export default async function getUserNotificationByPaging(
   accessToken: string
 ): Promise<ApiResponse<UserNotificationByPagingResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-notification/get-by-paging`;
+  const requestUrl = `/api/v1/user-notification/get-by-paging`;
 
   try {
     const response = await axios.post(requestUrl, requestBody, {

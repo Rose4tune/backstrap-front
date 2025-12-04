@@ -6,7 +6,7 @@ type UserRegisterDto = components["schemas"]["UserRegisterDto"]
 
 export async function createUser(payload: UserRegisterDto): Promise<ApiResponse<void>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user/create-user`;
+  const requestUrl = `/api/v1/user/create-user`;
 
   try {
     const response = await axios.post(requestUrl, payload, {

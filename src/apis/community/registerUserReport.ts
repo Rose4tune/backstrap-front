@@ -26,7 +26,7 @@ export default async function registerUserReport(
   accessToken?: string
 ): Promise<ApiResponse<UserReportEntityView>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-report/register`;
+  const requestUrl = `/api/v1/user-report/register`;
 
   // 필수 필드 유효성 검증
   if (!params.parentEntityType || !params.parentEntityUuid || !params.reportedUuid || !params.userReportType) {

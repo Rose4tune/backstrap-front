@@ -16,7 +16,7 @@ export default async function deleteBoard(
   accessToken?: string
 ): Promise<ApiResponse<void>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/board/delete`;
+  const requestUrl = `/api/v1/board/delete`;
 
   // UUID 유효성 검증
   if (!params.uuid) {

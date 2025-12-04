@@ -10,7 +10,7 @@ export default async function getUserMessagesByPaging(
   payload: UserMessageFetchDto
 ): Promise<ApiResponse<UserMessagePaginationResultDto | null>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-message/get-by-paging-new`;
+  const requestUrl = `/api/v1/user-message/get-by-paging-new`;
 
   try {
     const response = await axios.post(requestUrl, payload, {

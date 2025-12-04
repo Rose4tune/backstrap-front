@@ -11,7 +11,7 @@ export default function useHttpPostOAuthToken(): [
   State<string, AuthPayload>,
   (username: string, password: string) => void
 ] {
-  const url = `${REST_API_ENDPOINT}${API_PATH_OAUTH_TOKEN}`;
+  const url = `${API_PATH_OAUTH_TOKEN}`;
 
   const [state, request] = useHttpPost<string, AuthPayload>(url, {
     headers: {

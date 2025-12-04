@@ -33,7 +33,7 @@ export default function useFileUpload(
   const ref = React.useRef<HTMLInputElement | null>(null);
   const [fileObj, setFileObj] = React.useState<File | undefined>();
 
-  const url = `${REST_API_ENDPOINT}${
+  const url = `${
     meta?.isSecured
       ? API_PATH_FILES_ACTION_UPLOAD_WITHSCURE
       : API_PATH_FILES_ACTION_UPLOAD

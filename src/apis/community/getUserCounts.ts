@@ -8,7 +8,7 @@ export default async function getUserCounts(
   accessToken?: string
 ): Promise<ApiResponse<GetUserCountsResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/board/get-user-counts`;
+  const requestUrl = `/api/v1/board/get-user-counts`;
 
   try {
     const headers: Record<string, string> = {

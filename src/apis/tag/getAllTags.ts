@@ -8,7 +8,7 @@ type GetAllTagsResponse = components['schemas']['TagEntityViewDto'][] | null;
 export default async function getAllTags(
 ): Promise<ApiResponse<GetAllTagsResponse>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/tag/get-all`;
+    const requestUrl = `/api/v1/tag/get-all`;
 
     try {
         const response = await axios.get(requestUrl, {

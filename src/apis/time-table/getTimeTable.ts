@@ -9,7 +9,7 @@ export default async function getTimeTable(
     accessToken: string
 ): Promise<ApiResponse<GetTimeTableResponse>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/time-table/get-by-uuid?uuid=${uuid}`;
+    const requestUrl = `/api/v1/time-table/get-by-uuid?uuid=${uuid}`;
 
     try {
         const response = await axios.get(requestUrl, {

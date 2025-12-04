@@ -6,7 +6,7 @@ export async function bookmark(
   accessToken: string
 ): Promise<ApiResponse<void>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/mentor-bookmark/bookmark?mentorUuid=${mentorUuid}`;
+  const requestUrl = `/api/v1/mentor-bookmark/bookmark?mentorUuid=${mentorUuid}`;
 
   try {
     const response = await axios.post<void>(requestUrl, mentorUuid, {

@@ -26,7 +26,7 @@ export default async function getCommentsByPaging(
   accessToken?: string
 ): Promise<ApiResponse<ReviewPaginationResultDto>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/review/get-by-paging`;
+  const requestUrl = `/api/v1/review/get-by-paging`;
 
   // 필수 필드 유효성 검증
   if (!params.parentEntityUuid || !params.parentEntityType || params.page < 0 || params.count <= 0) {

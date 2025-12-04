@@ -10,7 +10,7 @@ export default async function editUserMessage(
   payload: UserMessageEditDto
 ): Promise<ApiResponse<UserMessageViewDto | null>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-message/edit`;
+  const requestUrl = `/api/v1/user-message/edit`;
 
   try {
     const response = await axios.post(requestUrl, payload, {

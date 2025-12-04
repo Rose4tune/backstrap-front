@@ -10,7 +10,7 @@ export default async function registerUserMessageNew(
   accessToken: string
 ): Promise<ApiResponse<UserMessageViewDto>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-message/register-new`;
+  const requestUrl = `/api/v1/user-message/register-new`;
 
   try {
     const response = await axios.post(requestUrl, payload, {

@@ -12,7 +12,7 @@ export default async function getFile(
     s3Key: string
 ): Promise<ApiResponse<GetFileResponse>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/files/action/download/${s3Key}`;
+    const requestUrl = `/api/v1/files/action/download/${s3Key}`;
 
     try {
         const response = await axios.get(requestUrl, {

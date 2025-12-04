@@ -15,7 +15,7 @@ export default async function getSchoolCoursesByPaging(
     accessToken: string
 ): Promise<ApiResponse<GetSchoolCoursesByPagingResponse | null>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/school-course/get-by-paging`;
+    const requestUrl = `/api/v1/school-course/get-by-paging`;
 
     try {
         const response = await axios.post(requestUrl, payload, {

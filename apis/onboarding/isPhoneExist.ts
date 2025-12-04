@@ -3,7 +3,7 @@ import type { ApiResponse } from 'types/ApiResponseType';
 
 export async function isPhoneExist(phone: string): Promise<ApiResponse<boolean>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user/is-exist-phone`;
+  const requestUrl = `/api/v1/user/is-exist-phone`;
 
   try {
     const response = await axios.get<boolean>(requestUrl, {

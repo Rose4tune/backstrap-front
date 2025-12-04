@@ -8,7 +8,7 @@ export default async function getFavoriteTimeTables(
     accessToken: string
 ): Promise<ApiResponse<GetFavoriteTimeTablesResponse | null>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/time-table/get-favorites`;
+    const requestUrl = `/api/v1/time-table/get-favorites`;
 
     try {
         const response = await axios.get(requestUrl, {

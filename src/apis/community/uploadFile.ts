@@ -12,7 +12,7 @@ export const uploadFile = (file: File, accessToken?: string): Promise<FileUpload
 
     // REST API 호출
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const uploadUrl = `${REST_API_ENDPOINT}/api/v1/files/action/upload`;
+    const uploadUrl = `/api/v1/files/action/upload`;
 
     // 인증 헤더 설정 (필요한 경우)
     const headers: HeadersInit = {

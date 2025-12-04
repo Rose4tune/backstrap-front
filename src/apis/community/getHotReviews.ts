@@ -20,7 +20,7 @@ export default async function getHotReviews(
   accessToken?: string
 ): Promise<ApiResponse<ReviewViewDtoRes[]>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/review/get-hot-reviews`;
+  const requestUrl = `/api/v1/review/get-hot-reviews`;
 
   try {
     const headers: Record<string, string> = {

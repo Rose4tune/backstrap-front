@@ -28,7 +28,7 @@ export default async function registerBoard(
   accessToken?: string
 ): Promise<ApiResponse<RegisterBoardResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/board/register`;
+  const requestUrl = `/api/v1/board/register`;
   // 필수 필드 유효성 검증
   if (!params.title || !params.content) {
     return {

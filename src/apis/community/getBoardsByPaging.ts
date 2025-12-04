@@ -23,7 +23,7 @@ export default async function getBoardsByPaging(
   params: GetBoardsByPagingParams = {}
 ): Promise<ApiResponse<GetBoardsByPagingResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/board/get-by-paging`;
+  const requestUrl = `/api/v1/board/get-by-paging`;
 
   const requestBody: components['schemas']['BoardFetchDto'] = {
     paginationRequestDto: {

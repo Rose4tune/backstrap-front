@@ -11,7 +11,7 @@ export default async function getTagsByPaging(
     body: GetTagsByPagingRequest,
 ): Promise<ApiResponse<GetTagsByPagingResponse>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/tag/get-by-paging`;
+    const requestUrl = `/api/v1/tag/get-by-paging`;
 
     try {
         const response = await axios.post(requestUrl, body, {

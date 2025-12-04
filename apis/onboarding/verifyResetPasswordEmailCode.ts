@@ -6,7 +6,7 @@ export async function verifyResetPasswordEmailCode(
   code: string
 ): Promise<ApiResponse<null>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const REQUEST_URL = `${REST_API_ENDPOINT}/api/v1/mail/send-reset-password-email`;
+  const REQUEST_URL = `/api/v1/mail/send-reset-password-email`;
 
   try {
     const { status, data } = await axios.post<ApiResponse<null>>(REQUEST_URL, null, {

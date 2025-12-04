@@ -9,7 +9,7 @@ export default async function registerUserSurvey(
     payload: RegisterUserSurveyRequest
 ): Promise<ApiResponse<RegisterUserSurveyResponse>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-survey/register`;
+    const requestUrl = `/api/v1/user-survey/register`;
 
     try {
         const response = await axios.post(requestUrl, payload, {

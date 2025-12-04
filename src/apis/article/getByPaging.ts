@@ -11,7 +11,7 @@ export async function getArticlesByPaging(
   accessToken?: string
 ): Promise<ApiResponse<ArticlePaginationResultDto>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/article/get-by-paging`;
+  const requestUrl = `/api/v1/article/get-by-paging`;
 
   try {
     const response = await axios.post<ArticlePaginationResultDto>(requestUrl, request, {

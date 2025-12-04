@@ -6,7 +6,7 @@ export async function findIdByPhone(
   phone: string
 ): Promise<ApiResponse<boolean>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const REQUEST_URL = `${REST_API_ENDPOINT}/api/v1/user/find-id-by-phone`;
+  const REQUEST_URL = `/api/v1/user/find-id-by-phone`;
 
   try {
     const { status, data } = await axios.post<boolean>(REQUEST_URL, null, {

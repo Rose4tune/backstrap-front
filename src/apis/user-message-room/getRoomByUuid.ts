@@ -14,7 +14,7 @@ export default async function getRoomByUuid(
   accessToken: string
 ): Promise<ApiResponse<RoomViewDto | null>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-message-room/get-by-uuid?roomUuid=${roomUuid}`;
+  const requestUrl = `/api/v1/user-message-room/get-by-uuid?roomUuid=${roomUuid}`;
 
   try {
     const response = await axios.get(requestUrl, {

@@ -40,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .then(result => {
         // bagstrap access token
         return axios.post<AuthPayload>(
-          `${REST_API_ENDPOINT}${API_PATH_SOCIAL_OAUTH}`,
+          `${API_PATH_SOCIAL_OAUTH}`,
           qs.stringify({
             token: result.data.access_token,
             provider: 'KAKAOTALK'

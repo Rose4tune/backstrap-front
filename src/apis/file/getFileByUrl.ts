@@ -8,7 +8,7 @@ export default async function getFileByUrl(
     s3Url: string
 ): Promise<ApiResponse<GetFileByUrlResponse>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/files/action/download-by-url?s3Url=${encodeURIComponent(
+    const requestUrl = `/api/v1/files/action/download-by-url?s3Url=${encodeURIComponent(
         s3Url
     )}`;
 

@@ -8,7 +8,7 @@ export default async function deleteRoom(
   accessToken: string
 ): Promise<ApiResponse<DeleteRoomResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-message-room/delete?roomUuid=${roomUuid}`;
+  const requestUrl = `/api/v1/user-message-room/delete?roomUuid=${roomUuid}`;
 
   try {
     const response = await axios.get(requestUrl, {

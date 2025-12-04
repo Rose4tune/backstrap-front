@@ -8,7 +8,7 @@ export async function getMentorReviewbyPaging(
   payload: MentorReviewRequestDto
 ): Promise<ApiResponse<MentorReviewResponseDto>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/mentor-review/get-by-paging`;
+  const requestUrl = `/api/v1/mentor-review/get-by-paging`;
 
   try {
     const response = await axios.post<MentorReviewRequestDto>(requestUrl, payload, {

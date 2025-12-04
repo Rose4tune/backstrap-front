@@ -34,7 +34,7 @@ export default async function registerUserInteraction(
   accessToken?: string
 ): Promise<ApiResponse<UserInteractionResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-interaction/register`;
+  const requestUrl = `/api/v1/user-interaction/register`;
 
   // 필수 필드 유효성 검증
   if (!params.parentEntityType || !params.parentEntityUuid || !params.userInteractionType) {
@@ -151,7 +151,7 @@ export async function deleteUserInteraction(
   accessToken?: string
 ): Promise<ApiResponse<void>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-interaction/delete`;
+  const requestUrl = `/api/v1/user-interaction/delete`;
 
   // 필수 필드 유효성 검증
   if (!params.parentEntityType || !params.userInteractionType) {

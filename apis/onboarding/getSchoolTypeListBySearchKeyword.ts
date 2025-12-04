@@ -17,7 +17,7 @@ export async function getSchoolTypeListBySearchKeyword(
   searchKeyword: string
 ): Promise<ApiResponse<SchoolType[]>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/school-type/list-by-keyword`;
+  const requestUrl = `/api/v1/school-type/list-by-keyword`;
 
   try {
     const response = await axios.get<SchoolType[]>(requestUrl, {

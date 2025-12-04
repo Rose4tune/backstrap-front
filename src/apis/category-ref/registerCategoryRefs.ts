@@ -9,7 +9,7 @@ export default async function registerCategoryRefs(
     accessToken: string
 ): Promise<ApiResponse<null>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/category-ref/register-multiple`;
+    const requestUrl = `/api/v1/category-ref/register-multiple`;
 
     try {
         const response = await axios.post(requestUrl, payload, {

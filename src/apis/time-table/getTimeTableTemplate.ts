@@ -10,7 +10,7 @@ export default async function getTimeTableTemplates(
     accessToken: string
 ): Promise<ApiResponse<GetTimeTableTemplatesResponse | null>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/time-table/get-templates`;
+    const requestUrl = `/api/v1/time-table/get-templates`;
 
     try {
         const response = await axios.post(requestUrl, payload, {

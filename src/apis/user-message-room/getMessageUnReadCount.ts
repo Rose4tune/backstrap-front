@@ -9,7 +9,7 @@ export default async function getMessageUnreadCount(
   accessToken: string
 ): Promise<ApiResponse<number | null>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-message-room/get-unread-count`;
+  const requestUrl = `/api/v1/user-message-room/get-unread-count`;
 
   try {
     const response = await axios.get(requestUrl, {

@@ -9,7 +9,7 @@ export default async function getSchoolCoursesByCategory(
     accessToken: string
 ): Promise<ApiResponse<GetSchoolCoursesByCategoryResponse[] | null>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/school-course/get-list-by-category?categoryUuid=${categoryUuid}`;
+    const requestUrl = `/api/v1/school-course/get-list-by-category?categoryUuid=${categoryUuid}`;
 
     try {
         const response = await axios.post(requestUrl, null, {

@@ -9,7 +9,7 @@ type TopFixBannerResponse = components['schemas']['BoardEntityView'];
  */
 export default async function getTopFixBanner(accessToken?: string): Promise<ApiResponse<TopFixBannerResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/board/get-top-fix`;
+  const requestUrl = `/api/v1/board/get-top-fix`;
 
   try {
     const headers: Record<string, string> = {

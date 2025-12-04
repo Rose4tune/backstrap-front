@@ -10,7 +10,7 @@ export async function paymentConfirm(
   payload: paymentConfirmRequest
 ): Promise<ApiResponse<PaymentConfirmResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/payment/confirm`;
+  const requestUrl = `/api/v1/payment/confirm`;
 
   try {
     const response = await axios.post<PaymentConfirmResponse>(requestUrl, payload, {

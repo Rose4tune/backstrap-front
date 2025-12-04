@@ -92,7 +92,7 @@ export default async function apiFunction(
   accessToken?: string
 ): Promise<ApiResponse<ResponseType>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/module/action`;
+  const requestUrl = `/api/v1/module/action`;
 
   try {
     const response = await axios.post(requestUrl, requestBody, {

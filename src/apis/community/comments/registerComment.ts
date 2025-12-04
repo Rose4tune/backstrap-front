@@ -25,7 +25,7 @@ export default async function registerComment(
   accessToken?: string
 ): Promise<ApiResponse<ReviewViewDtoRes>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/review/register`;
+  const requestUrl = `/api/v1/review/register`;
 
   // 필수 필드 유효성 검증
   if (!params.parentEntityType || !params.parentEntityUuid || !params.content?.trim()) {

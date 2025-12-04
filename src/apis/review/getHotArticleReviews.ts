@@ -12,7 +12,7 @@ export default async function getHotArticleReviews(
     count: number = 10
 ): Promise<ApiResponse<ReviewResponse>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/review/get-hot-article-reviews?count=${count}`;
+    const requestUrl = `/api/v1/review/get-hot-article-reviews?count=${count}`;
 
     try {
         const response = await axios.get(requestUrl, {

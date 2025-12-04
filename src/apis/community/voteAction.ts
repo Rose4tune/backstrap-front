@@ -20,7 +20,7 @@ export default async function voteAction(
   accessToken?: string
 ): Promise<ApiResponse<VoteActionResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/vote/action`;
+  const requestUrl = `/api/v1/vote/action`;
 
   // 필수 필드 유효성 검증
   if (!params.voteUuid || !params.voteItemUuids || params.voteItemUuids.length === 0) {

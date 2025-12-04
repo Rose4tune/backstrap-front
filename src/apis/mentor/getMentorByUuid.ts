@@ -10,7 +10,7 @@ export async function getMentorByUuid(
   accessToken?: string
 ): Promise<ApiResponse<GetMentorByUuidResponse>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/mentor/get-by-uuid?uuid=${encodeURIComponent(uuid)}`;
+  const requestUrl = `/api/v1/mentor/get-by-uuid?uuid=${encodeURIComponent(uuid)}`;
   let headers;
   if (accessToken) {
     headers = {

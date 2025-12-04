@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default async function checkSurvey(accessToken: string): Promise<ApiResponse<boolean>> {
   const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-  const requestUrl = `${REST_API_ENDPOINT}/api/v1/user-survey/check-need`;
+  const requestUrl = `/api/v1/user-survey/check-need`;
 
   try {
     const response = await axios.get(requestUrl, {

@@ -13,7 +13,7 @@ export default async function registerTimeTableCourseGrades(
     accessToken: string
 ): Promise<ApiResponse<TimeTableCourseGradeViewDto[] | null>> {
     const REST_API_ENDPOINT = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
-    const requestUrl = `${REST_API_ENDPOINT}/api/v1/timetable-course-grade/register-multiple?timeTableUuid=${timeTableUuid}`;
+    const requestUrl = `/api/v1/timetable-course-grade/register-multiple?timeTableUuid=${timeTableUuid}`;
 
     try {
         const response = await axios.post(requestUrl, dtos, {
