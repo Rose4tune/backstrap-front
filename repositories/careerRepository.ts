@@ -39,7 +39,7 @@ export async function postRecruitmentListData(
   }
 }
 
-// 진학 채용 공고 조회 API
+// 연구직 채용 소식 조회 API
 export async function postJinhakRecruitmentListData(
   body: PostJinhakRecruitmentListRequest,
   token?: string

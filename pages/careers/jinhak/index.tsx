@@ -218,7 +218,7 @@ const CareersJinhak = observer(() => {
             <SectionTitleContainer>
               <SectionTitleAndSearch>
                 {!(searchSelected && screenSize === 'small') && (
-                  <SectionTitle>진학 채용 공고</SectionTitle>
+                  <SectionTitle>연구직 채용 소식</SectionTitle>
                 )}
                 <CareerSearchButton
                   value={searchText}
@@ -261,7 +261,7 @@ const CareersJinhak = observer(() => {
             <SectionTitleContainer>
               <SectionTitleAndSearch>
                 {!(searchSelected && screenSize === 'small') && (
-                  <SectionTitle>진학 채용 공고</SectionTitle>
+                  <SectionTitle>연구직 채용 소식</SectionTitle>
                 )}
                 <CareerSearchButton
                   value={searchText}
