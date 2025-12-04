@@ -13,8 +13,8 @@ const CompanyRecruitSection = () => {
   const screenSize = useScreenSize();
   const visibleItems =
     screenSize === 'small'
-      ? toJS(careerStore.recruitmentResearcherAndProfessorListData.data).slice(0, 2)
-      : toJS(careerStore.recruitmentResearcherAndProfessorListData.data).slice(0, 4);
+      ? toJS(careerStore.recruitmentListData.data).slice(0, 2)
+      : toJS(careerStore.recruitmentListData.data).slice(0, 4);
 
   useEffect(() => {
     const fetchData = async () => {

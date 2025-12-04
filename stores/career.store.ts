@@ -1,6 +1,9 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 
-import { PostRecruitmentListRequest } from '@dto/CareerDTO';
+import {
+  PostRecruitmentListRequest,
+  PostJinhakRecruitmentListRequest
+} from '@dto/CareerDTO';
 
 import {
   deleteRecruitmentBookmarkData,
@@ -8,6 +11,7 @@ import {
   getRecruitmentDetailData,
   getRecruitmentFilterTypeData,
   postRecruitmentListData,
+  postJinhakRecruitmentListData,
   putRecruitmentBookmarkData
 } from '@repositories/careerRepository';
 
@@ -41,6 +45,7 @@ const careerStore = makeAutoObservable({
         sourceCompanyName: '',
         sourceCompanyAddress: '',
         isBookmarked: false,
+        isJinhak: false,
         industryTypes: [
           {
             key: '',
@@ -103,6 +108,7 @@ const careerStore = makeAutoObservable({
     sourceCompanyName: '',
     sourceCompanyAddress: '',
     isBookmarked: false,
+    isJinhak: false,
     industryTypes: [
       {
         key: '',
@@ -142,17 +148,7 @@ const careerStore = makeAutoObservable({
     },
     isAdminRegistered: false
   },
-  filterTypeData: {
-    job: {},
-    industry: [],
-    company: [],
-    recruitment: [],
-    education: [],
-    region: [],
-    deadline: []
-  },
-  bookmarkedJobs: new Map<string, boolean>(),
-  bookmarkListData: {
+  recruitmentJinhakListData: {
     cursor: '',
     page: 0,
     totalCount: 1,
@@ -178,6 +174,7 @@ const careerStore = makeAutoObservable({
         sourceCompanyName: '',
         sourceCompanyAddress: '',
         isBookmarked: false,
+        isJinhak: false,
         industryTypes: [
           {
             key: '',
@@ -219,7 +216,17 @@ const careerStore = makeAutoObservable({
       }
     ]
   },
-  recruitmentResearcherAndProfessorListData: {
+  filterTypeData: {
+    job: {},
+    industry: [],
+    company: [],
+    recruitment: [],
+    education: [],
+    region: [],
+    deadline: []
+  },
+  bookmarkedJobs: new Map<string, boolean>(),
+  bookmarkListData: {
     cursor: '',
     page: 0,
     totalCount: 1,
@@ -245,6 +252,7 @@ const careerStore = makeAutoObservable({
         sourceCompanyName: '',
         sourceCompanyAddress: '',
         isBookmarked: false,
+        isJinhak: false,
         industryTypes: [
           {
             key: '',
@@ -308,32 +316,40 @@ const careerStore = makeAutoObservable({
 
   async postRecruitmentList(body: PostRecruitmentListRequest, token?: string) {
     const response = await postRecruitmentListData(body, token);
-    this.recruitmentListData = response as unknown as {
-      data: CareersMainType[];
-      cursor: string;
-      page: number;
-      totalCount: number;
-    };
+    runInAction(() => {
+      this.recruitmentListData = response as unknown as {
+        data: CareersMainType[];
+        cursor: string;
+        page: number;
+        totalCount: number;
+      };
+    });
   },
 
   async getRecruitmentDetail(uuid: string, token?: string) {
     const response = await getRecruitmentDetailData(uuid, token);
-    this.recruitmentDetailData = response as CareersMainType;
+    runInAction(() => {
+      this.recruitmentDetailData = response as CareersMainType;
+    });
   },
 
   async getRecruitmentFilterType() {
     const response = await getRecruitmentFilterTypeData();
-    this.filterTypeData = response as FilterType;
+    runInAction(() => {
+      this.filterTypeData = response as FilterType;
+    });
   },
 
   async getRecruitmentBookmark(token: string) {
     const response = await getRecruitmentBookmarkData(token);
-    this.bookmarkListData = response as {
-      data: CareersMainType[];
-      cursor: string;
-      page: number;
-      totalCount: number;
-    };
+    runInAction(() => {
+      this.bookmarkListData = response as {
+        data: CareersMainType[];
+        cursor: string;
+        page: number;
+        totalCount: number;
+      };
+    });
   },
 
   async postRecruitmentResearcherAndProfessorList() {
@@ -344,12 +360,31 @@ const careerStore = makeAutoObservable({
       },
       jobTypes: ['research']
     });
-    this.recruitmentResearcherAndProfessorListData = response as unknown as {
-      data: CareersMainType[];
-      cursor: string;
-      page: number;
-      totalCount: number;
-    };
+    runInAction(() => {
+      this.recruitmentListData = response as unknown as {
+        data: CareersMainType[];
+        cursor: string;
+        page: number;
+        totalCount: number;
+      };
+    });
+  },
+
+  async postJinhakRecruitmentList(
+    body: PostJinhakRecruitmentListRequest,
+    token?: string
+  ) {
+    const response = await postJinhakRecruitmentListData(body, token);
+    if (response) {
+      runInAction(() => {
+        this.recruitmentJinhakListData = response as unknown as {
+          data: CareersMainType[];
+          cursor: string;
+          page: number;
+          totalCount: number;
+        };
+      });
+    }
   }
 });
 

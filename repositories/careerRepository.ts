@@ -5,7 +5,10 @@
 
 import { fetchData } from '@apis/fetchData';
 
-import type { PostRecruitmentListRequest } from '@dto/CareerDTO';
+import type {
+  PostRecruitmentListRequest,
+  PostJinhakRecruitmentListRequest
+} from '@dto/CareerDTO';
 
 import type CareersMainType from '@mock/careers/types/careersMainType';
 
@@ -30,6 +33,26 @@ export async function postRecruitmentListData(
       body: body,
       token: token
     });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// 진학 채용 공고 조회 API
+export async function postJinhakRecruitmentListData(
+  body: PostJinhakRecruitmentListRequest,
+  token?: string
+) {
+  try {
+    const response = await fetchData<CareersMainType[], PostJinhakRecruitmentListRequest>(
+      {
+        method: 'POST',
+        path: '/api/v1/recruitment-new/get-jinhak-by-paging',
+        body: body,
+        token: token
+      }
+    );
     return response;
   } catch (error) {
     console.error(error);

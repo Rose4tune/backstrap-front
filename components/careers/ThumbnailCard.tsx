@@ -43,7 +43,9 @@ const ThumbnailCard = observer(({ data, defaultColor }: ThumbnailCardProps) => {
     educations,
     recruitmentTypes,
     recruitmentJobs,
-    isBookmarked
+    isBookmarked,
+    recruitmentAnnouncementLink,
+    isJinhak
   } = data;
   const authPayload = useAuthPayload();
 
@@ -58,10 +60,12 @@ const ThumbnailCard = observer(({ data, defaultColor }: ThumbnailCardProps) => {
 
   if (!isLoaded) return null;
 
+  const detailPath = `/careers/${uuid}`;
+
   return (
     <ThumbnailCardContainer>
       <ThumbnailContainer>
-        <Link href={`/careers/${uuid}`} passHref>
+        <Link href={detailPath} passHref>
           <Image
             src={
               thumbnailUrl ||
@@ -77,18 +81,20 @@ const ThumbnailCard = observer(({ data, defaultColor }: ThumbnailCardProps) => {
             <Dday daysLeft={formatDeadlineDate(recruitmentDeadlineDate)} />
           </DdayContainer>
         </Link>
-        <JobBookmarkContainer>
-          <JobBookmark
-            selected={careerStore.isBookmarked(uuid)}
-            defaultColor={defaultColor}
-            onClickEvent={() =>
-              careerStore.toggleBookmark(uuid, isBookmarked, accessToken)
-            }
-          />
-        </JobBookmarkContainer>
+        {!isJinhak && (
+          <JobBookmarkContainer>
+            <JobBookmark
+              selected={careerStore.isBookmarked(uuid)}
+              defaultColor={defaultColor}
+              onClickEvent={() =>
+                careerStore.toggleBookmark(uuid, isBookmarked, accessToken)
+              }
+            />
+          </JobBookmarkContainer>
+        )}
       </ThumbnailContainer>
 
-      <Link href={`/careers/${uuid}`} passHref>
+      <Link href={detailPath} passHref>
         <JobInformation>
           <CompanyName>{companyName}</CompanyName>
           <JobTitle>{title}</JobTitle>

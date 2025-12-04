@@ -26,4 +26,5 @@ export default interface CareersMainType {
   regions: { key: string; value: string }[];
   deadlineType: { key: string; value: string };
   isAdminRegistered: boolean;
+  isJinhak: boolean;
 }

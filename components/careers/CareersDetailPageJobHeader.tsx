@@ -30,9 +30,19 @@ import {
   CareersDetailPageJobHeaderFloatingDdayLine,
   CareersDetailPageJobHeaderFloatingDdayText
 } from './CareersDetailPageJobHeader.style';
+import CommonButton from '@common/button/CommonButton';
+import { emotionTheme } from '@styles/themes/theme-new';
 
 const CareersDetailPageJobHeader = observer(
-  ({ jobData }: { jobData: CareersMainType }) => {
+  ({ 
+    jobData, 
+    isJinhak, 
+    onJinhakClick 
+  }: { 
+    jobData: CareersMainType; 
+    isJinhak?: boolean;
+    onJinhakClick?: () => void;
+  }) => {
     const [authGuardModalDialogEl, passed] = useAuthGuard(true);
 
     const [showModal, setShowModal] = useState(false);
@@ -82,33 +92,52 @@ const CareersDetailPageJobHeader = observer(
         </CareersDetailPageJobHeaderTitleImageContainer>
         <CareersDetailPageJobHeaderDdayAndActionContainer>
           <CareersDetailPageJobHeaderActionContainer>
-            <CareersDetailPageJobHeaderActionIconButton onClick={handleBookmarkClick}>
-              <Image
-                src={
-                  careerStore.isBookmarked(jobData.uuid)
-                    ? '/icons/bookmark-yellow.svg'
-                    : '/icons/bookmark-gray-600.svg'
-                }
-                alt="북마크 아이콘"
-                width={24}
-                height={24}
-              />
-            </CareersDetailPageJobHeaderActionIconButton>
+            {!isJinhak && (
+              <CareersDetailPageJobHeaderActionIconButton onClick={handleBookmarkClick}>
+                <Image
+                  src={
+                    careerStore.isBookmarked(jobData.uuid)
+                      ? '/icons/bookmark-yellow.svg'
+                      : '/icons/bookmark-gray-600.svg'
+                  }
+                  alt="북마크 아이콘"
+                  width={24}
+                  height={24}
+                />
+              </CareersDetailPageJobHeaderActionIconButton>
+            )}
             <CareersDetailPageJobHeaderActionIconButton onClick={() => copyLink()}>
               <Image src="/icons/share.svg" alt="공유 아이콘" width={24} height={24} />
             </CareersDetailPageJobHeaderActionIconButton>
             <LinkCopyToast message="링크가 복사되었습니다!" isVisible={copied} />
           </CareersDetailPageJobHeaderActionContainer>
-          <CareersDetailPageJobHeaderFloatingDdayContainer>
-            <CareersDetailPageJobHeaderFloatingDdayTitle>
-              지원 마감
-            </CareersDetailPageJobHeaderFloatingDdayTitle>
-            <CareersDetailPageJobHeaderFloatingDdayLine />
-            <CareersDetailPageJobHeaderFloatingDdayText>
-              D-
-              {formatDeadlineDate(jobData?.recruitmentDeadlineDate ?? '')}
-            </CareersDetailPageJobHeaderFloatingDdayText>
-          </CareersDetailPageJobHeaderFloatingDdayContainer>
+          <div>
+            <CareersDetailPageJobHeaderFloatingDdayContainer
+              style={{
+                padding: isJinhak ? '20px 30px' : '32px 24px',
+                backgroundColor: emotionTheme.color[isJinhak ? "gray" : "turqoise"][100]
+              }}
+            >
+              <CareersDetailPageJobHeaderFloatingDdayTitle>
+                지원 마감
+              </CareersDetailPageJobHeaderFloatingDdayTitle>
+              <CareersDetailPageJobHeaderFloatingDdayLine />
+              <CareersDetailPageJobHeaderFloatingDdayText>
+                D-
+                {formatDeadlineDate(jobData?.recruitmentDeadlineDate ?? '')}
+              </CareersDetailPageJobHeaderFloatingDdayText>
+            </CareersDetailPageJobHeaderFloatingDdayContainer>
+            {isJinhak && (
+              <div className="mt-2 hidden lg:block">
+              <CommonButton
+                text="지원하러 가기"
+                size="full"
+                emphasis="primary"
+                onClick={onJinhakClick}
+                />
+                </div>
+            )}
+          </div>
         </CareersDetailPageJobHeaderDdayAndActionContainer>
         {showModal && authGuardModalDialogEl}
       </CareersDetailPageJobHeaderContainer>

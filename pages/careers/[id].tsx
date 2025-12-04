@@ -14,6 +14,9 @@ import PopularRecruitmentSection from '@components/careers/PopularRecruitmentSec
 import CareersDetailPageJobHeader from '@components/careers/CareersDetailPageJobHeader';
 import RecruitmentInformationSection from '@components/careers/RecruitmentInformationSection';
 import CareerPositionContent from '@components/careers/CareerPositionContent';
+import JinhakRecruitmentInformationSection from '@components/careers/JinhakRecruitmentInformationSection';
+import JinhakProSection from '@components/careers/JinhakProSection';
+import Work24DisclaimerSection from '@components/careers/Work24DisclaimerSection';
 
 import CommonButton from '@common/button/CommonButton';
 
@@ -51,7 +54,7 @@ const CareersDetailPage = observer(() => {
 
       const fetchData = async () => {
         try {
-          careerStore.getRecruitmentDetail(
+          await careerStore.getRecruitmentDetail(
             routerQuery as string,
             authPayload?.access_token
           );
@@ -64,42 +67,60 @@ const CareersDetailPage = observer(() => {
     }
   }, [authPayload, routerQuery]);
 
-  const jobData = useMemo(() => {
-    return toJS(careerStore.recruitmentDetailData);
-  }, [careerStore.recruitmentDetailData]);
+  const jobData = useMemo(() => toJS(careerStore.recruitmentDetailData), [careerStore.recruitmentDetailData]);
+
+  // 진학 데이터인지 판단
+  const isJinhak = jobData?.isJinhak ?? false;
 
   const handleApplyButtonClick = () => {
-    window.open(jobData?.recruitmentAnnouncementLink, '_blank');
+    if (isJinhak && jobData?.recruitmentAnnouncementLink) {
+      const url = new URL(jobData.recruitmentAnnouncementLink);
+      url.searchParams.set('utm_source', 'bagstrap');
+      url.searchParams.set('utm_medium', 'referral');
+      url.searchParams.set('utm_campaign', 'bagstrap_recruit');
+      window.open(url.toString(), '_blank');
+    } else {
+      window.open(jobData?.recruitmentAnnouncementLink, '_blank');
+    }
   };
 
-  return (
-    isMobile ? <PageLayout>
-      <CareerPageLayout>
-        {jobData && (
-          <>
-            <CareersDetailPageJobHeader jobData={jobData} />
-            <RecruitmentInformationSection jobData={jobData} />
-          </>
+  const renderJinhakContent = (jobData: CareersMainType) => (
+    <>
+      <JinhakRecruitmentInformationSection jobData={jobData} />
+      <JinhakProSection jobData={jobData} onButtonClick={handleApplyButtonClick} />
+      <Work24DisclaimerSection jobData={jobData} />
+    </>
+  );
+  
+
+  const renderRegularContent = (jobData: CareersMainType) => (
+    <>
+      <RecruitmentInformationSection jobData={jobData} />
+      <PopularRecruitmentSection />
+      <CareersDetailPagePositionContainer>
+        {jobData?.content ? (
+          <CareerPositionContent jobContent={jobData?.content} />
+        ) : (
+          <span>-</span>
         )}
-        <PopularRecruitmentSection />
-        <CareersDetailPagePositionContainer>
-          {jobData?.content ? (
-            <CareerPositionContent jobContent={jobData?.content} />
-          ) : (
-            <span>-</span>
-          )}
-          <CareersDetailPageFloatingApplyPanelContainer>
-            <CareersDetailPageFloatingApplyButtonContainer>
-              <CommonButton
-                text="지원하기"
-                size="full"
-                emphasis="primary"
-                onClick={handleApplyButtonClick}
-              />
-            </CareersDetailPageFloatingApplyButtonContainer>
-          </CareersDetailPageFloatingApplyPanelContainer>
-        </CareersDetailPagePositionContainer>
-      </CareerPageLayout>
+        <CareersDetailPageFloatingApplyPanelContainer>
+          <CareersDetailPageFloatingApplyButtonContainer>
+            <CommonButton
+              text="지원하기"
+              size="full"
+              emphasis="primary"
+              onClick={handleApplyButtonClick}
+            />
+          </CareersDetailPageFloatingApplyButtonContainer>
+        </CareersDetailPageFloatingApplyPanelContainer>
+      </CareersDetailPagePositionContainer>
+    </>
+  );
+
+  const renderFooterButton = () => {
+    if (isJinhak) return null;
+
+    return (
       <CareersDetailPageFooterApplyButtonContainer>
         <CommonButton
           text="지원하기"
@@ -108,45 +129,47 @@ const CareersDetailPage = observer(() => {
           onClick={handleApplyButtonClick}
         />
       </CareersDetailPageFooterApplyButtonContainer>
-    </PageLayout> :
-      <div className="flex flex-col w-full min-w-[1280px] max-w-[1920px] mx-auto">
-        <GlobalHeader />
+    );
+  };
+
+  if (isMobile) {
+    return (
+      <PageLayout>
         <CareerPageLayout>
           {jobData && (
             <>
-              <CareersDetailPageJobHeader jobData={jobData} />
-              <RecruitmentInformationSection jobData={jobData} />
+              <CareersDetailPageJobHeader
+                jobData={jobData}
+                isJinhak={isJinhak}
+                onJinhakClick={isJinhak ? handleApplyButtonClick : undefined}
+              />
+              {isJinhak ? renderJinhakContent(jobData) : renderRegularContent(jobData)}
             </>
           )}
-          <PopularRecruitmentSection />
-          <CareersDetailPagePositionContainer>
-            {jobData?.content ? (
-              <CareerPositionContent jobContent={jobData?.content} />
-            ) : (
-              <span>-</span>
-            )}
-            <CareersDetailPageFloatingApplyPanelContainer>
-              <CareersDetailPageFloatingApplyButtonContainer>
-                <CommonButton
-                  text="지원하기"
-                  size="full"
-                  emphasis="primary"
-                  onClick={handleApplyButtonClick}
-                />
-              </CareersDetailPageFloatingApplyButtonContainer>
-            </CareersDetailPageFloatingApplyPanelContainer>
-          </CareersDetailPagePositionContainer>
         </CareerPageLayout>
-        <CareersDetailPageFooterApplyButtonContainer>
-          <CommonButton
-            text="지원하기"
-            size="full"
-            emphasis="primary"
-            onClick={handleApplyButtonClick}
-          />
-        </CareersDetailPageFooterApplyButtonContainer>
-        <Footer />
-      </div>
+        {renderFooterButton()}
+      </PageLayout>
+    );
+  }
+
+  return (
+    <div className="flex flex-col w-full min-w-[1280px] max-w-[1920px] mx-auto">
+      <GlobalHeader />
+      <CareerPageLayout>
+        {jobData && (
+          <>
+            <CareersDetailPageJobHeader
+              jobData={jobData}
+              isJinhak={isJinhak}
+              onJinhakClick={isJinhak ? handleApplyButtonClick : undefined}
+            />
+            {isJinhak ? renderJinhakContent(jobData) : renderRegularContent(jobData)}
+          </>
+        )}
+      </CareerPageLayout>
+      {renderFooterButton()}
+      <Footer />
+    </div>
   );
 });
 

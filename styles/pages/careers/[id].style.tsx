@@ -37,6 +37,7 @@ export const CareersDetailPageFooterApplyButtonContainer = styled.div`
   label: careers-detail-page-footer-apply-button-container;
   display: none;
   position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
   padding: 30px 20px;

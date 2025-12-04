@@ -21,3 +21,12 @@ export interface PostRecruitmentListRequest {
   lastModifiedDateMax?: number;
   keyword?: string | null;
 }
+
+// 진학 전용 API 요청 타입
+export interface PostJinhakRecruitmentListRequest {
+  cursor: string | null;
+  count: number;
+  sort?: 'DEADLINE' | 'UPLOAD';
+  orderBy?: 'DESC' | 'ASC';
+  keyword?: string | null;
+}
