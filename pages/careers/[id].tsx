@@ -16,7 +16,7 @@ import RecruitmentInformationSection from '@components/careers/RecruitmentInform
 import CareerPositionContent from '@components/careers/CareerPositionContent';
 import JinhakRecruitmentInformationSection from '@components/careers/JinhakRecruitmentInformationSection';
 import JinhakProSection from '@components/careers/JinhakProSection';
-import Work24DisclaimerSection from '@components/careers/Work24DisclaimerSection';
+import JinhakDisclaimerSection from '@components/careers/JinhakDisclaimerSection';
 
 import CommonButton from '@common/button/CommonButton';
 
@@ -88,7 +88,7 @@ const CareersDetailPage = observer(() => {
     <>
       <JinhakRecruitmentInformationSection jobData={jobData} />
       <JinhakProSection jobData={jobData} onButtonClick={handleApplyButtonClick} />
-      <Work24DisclaimerSection jobData={jobData} />
+      <JinhakDisclaimerSection jobData={jobData} />
     </>
   );
   

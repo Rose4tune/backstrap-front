@@ -27,4 +27,6 @@ export default interface CareersMainType {
   deadlineType: { key: string; value: string };
   isAdminRegistered: boolean;
   isJinhak: boolean;
+  applyMethod?: string;
+  majorList?: string;
 }

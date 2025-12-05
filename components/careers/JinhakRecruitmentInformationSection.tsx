@@ -32,31 +32,20 @@ const formatDateRange = (startDate: string, endDate: string): string => {
 const JinhakRecruitmentInformationSection = ({
   jobData
 }: JinhakRecruitmentInformationSectionProps) => {
-  const leftItemsData = [
+  const labels = ['접수 기간', '채용 직군', '모집 전공', '접수 방법', '지원 자격', '근무 지역'];
+  const itemsData = [
     formatDateRange(jobData.recruitmentStartDate, jobData.recruitmentDeadlineDate),
     jobData.recruitmentTypes.map(type => type.value),
-    Object.values(jobData.recruitmentJobs)
-      .flat()
-      .map(job => job.value)
-  ];
-
-  const rightItemsData = [
-    '홈페이지 지원',
+    [jobData.majorList?.replaceAll(',', ', ')],
+    jobData.applyMethod || '',
     jobData.educations.map(edu => edu.value),
     jobData.regions.map(region => region.value)
   ];
 
-  const leftLabels = ['접수 기간', '채용 직군', '모집 전공'];
-  const rightLabels = ['접수 방법', '지원 자격', '근무 지역'];
-
   const allItems = [
-    ...leftLabels.map((label, index) => ({
+    ...labels.map((label, index) => ({
       label,
-      data: leftItemsData[index]
-    })),
-    ...rightLabels.map((label, index) => ({
-      label,
-      data: rightItemsData[index]
+      data: itemsData[index]
     }))
   ];
 
