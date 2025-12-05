@@ -8,42 +8,45 @@ import ThumbnailCard from '@components/careers/ThumbnailCard';
 import SmallThumbnailCard from '@components/careers/SmallThumbnailCard';
 import ViewAllButton from '@components/careers/ViewAllButton';
 import CareersMainType from '@mock/careers/types/careersMainType';
+import Image from 'next/image';
 
 interface CareerSectionProps {
   title: string;
   type: 'large' | 'small';
   items: CareersMainType[];
-  viewAllHref?: string
+  viewAllHref?: string;
+  TitleIcon?: {
+    src?: string;
+    alt?: string;
+    width?: number;
+    height?: number;
+  };
 }
 const CareerSection = ({
   title,
   type,
   items,
-  viewAllHref = '/careers/all'
+  viewAllHref = '/careers/all',
+  TitleIcon,
 }: CareerSectionProps) => {
   return (
     <CareerSectionContainer>
       <SectionHeader>
-        <SectionTitle>{title}</SectionTitle>
+        <SectionTitle>
+          {TitleIcon && <Image src={TitleIcon.src || ''} alt={TitleIcon.alt || ''} width={TitleIcon.width || 20} height={TitleIcon.height || 20} />}
+          {title}
+        </SectionTitle>
         <ViewAllButton text={'전체보기'} href={viewAllHref} />
       </SectionHeader>
       {type === 'large' && (
         <SectionBody type={type}>
-          {items.map(item => {
-            // 진학프로 데이터인지 판단 (uuid가 null인 경우)
-            const isJinhakData = item.uuid == null || item.uuid === '';
-            const itemId = isJinhakData
-              ? item.recruitmentAnnouncementLink?.split('/').pop() || ''
-              : item.uuid;
-
-            return (
-              <ThumbnailCard
-                key={`${title}_thumbnail_card_${itemId}`}
-                data={item}
-                defaultColor="grey"
-              />
-            );
-          })}
+          {items.map(item =>
+            <ThumbnailCard
+              key={`${title}_thumbnail_card_${item.uuid}`}
+              data={item}
+              defaultColor="grey"
+            />
+          )}
         </SectionBody>
       )}
 

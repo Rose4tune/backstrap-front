@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
@@ -30,6 +31,8 @@ const ResearcherProfessorJobSection = observer(() => {
 
   const jinhakData = toJS(careerStore.recruitmentJinhakListData?.data || []);
 
+  console.log(jinhakData);
+
   const visibleItems = (() => {
     if (screenSize === 'xsmall') return jinhakData.slice(0, 2);
     if (screenSize === 'small') return jinhakData.slice(0, 3);
@@ -43,6 +46,11 @@ const ResearcherProfessorJobSection = observer(() => {
         type="large"
         items={visibleItems}
         viewAllHref="/careers/jinhak"
+        TitleIcon={{
+          src: '/logos/logo-jinhakpro.png',
+          alt: 'JinhakPro',
+          width: 150,
+        }}
       />
     </ResearcherProfessorJobSectionContainer>
   );

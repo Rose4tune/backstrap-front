@@ -33,6 +33,10 @@ export const SectionTitle = styled.h2`
   font-size: 24px;
   line-height: 32px;
   font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 
   /* Medium (1024px ~ 1439px) */
   @media (max-width: ${emotionTheme.breakpoints.values.Large}px) {
