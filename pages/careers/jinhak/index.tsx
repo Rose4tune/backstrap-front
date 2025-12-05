@@ -89,19 +89,11 @@ const CareersJinhak = observer(() => {
         careerStore
           .postJinhakRecruitmentList(requestBody, token)
           .then(() => {
-            const jinhakData = toJS(careerStore.recruitmentJinhakListData);
-            
-            // cursor가 null이면 첫 요청이므로 기존 데이터를 덮어쓰고, 아니면 추가
-            if (!cursor || cursor === null || cursor === '') {
-              setCareerSliceData(jinhakData.data || []);
-            } else {
-              setCareerSliceData(prev => [...prev, ...(jinhakData.data || [])]);
-            }
+            const { data } = toJS(careerStore.recruitmentJinhakListData);
 
-            // cursor가 null이거나 빈 문자열이면 더 이상 데이터가 없음
-            if (!jinhakData.cursor || jinhakData.cursor === null || jinhakData.cursor === '') {
-              setHasMore(false);
-            } else if (jinhakData.totalCount <= REQUEST_COUNT) {
+            setCareerSliceData(prev => [...prev, ...data]);
+
+            if (data.length < REQUEST_COUNT) {
               setHasMore(false);
             }
           })
@@ -112,7 +104,7 @@ const CareersJinhak = observer(() => {
       },
       1000
     ),
-    [searchText, sort]
+    []
   );
 
   // authPayload가 준비되면, fetch 준비 상태로 전환
@@ -137,7 +129,7 @@ const CareersJinhak = observer(() => {
     hasFetchedRef.current = true;
 
     fetchData(searchText, sort, null, authPayload?.access_token);
-  }, [shouldFetch, fetchData, searchText, authPayload?.access_token]);
+  }, [shouldFetch]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -155,7 +147,6 @@ const CareersJinhak = observer(() => {
     setCareerSliceData([]);
     setHasMore(true);
     setHasListRendered(false);
-    hasFetchedRef.current = false; // 리셋하여 다시 fetch 가능하도록
     fetchData(searchText, newSort, null, authPayload?.access_token);
   };
 
@@ -165,14 +156,7 @@ const CareersJinhak = observer(() => {
   };
 
   const handleSearch = () => {
-    setSearchSelected(false); // 검색 후 입력창 닫기
     handleRefetch();
-  };
-
-  const handleClear = () => {
-    setSearchText('');
-    setSearchSelected(false); // 클리어 후 입력창 닫기
-    handleRefetch(); // 검색 결과도 초기화
   };
 
   // 무한 스크롤 콜백
@@ -201,8 +185,7 @@ const CareersJinhak = observer(() => {
     isLoading,
     hasMore,
     hasTriggered,
-    hasListRendered,
-    authPayload?.access_token
+    hasListRendered
   ]);
 
   // 무한 스크롤 트리거 ref
@@ -226,7 +209,7 @@ const CareersJinhak = observer(() => {
                   onSelect={() => setSearchSelected(true)}
                   onChange={e => setSearchText(e.target.value)}
                   onSubmit={handleSearch}
-                  onClear={handleClear}
+                  onClear={() => setSearchText('')}
                 />
               </SectionTitleAndSearch>
               <CareerSortButton sortValue={sort} onSortChange={handleSortChange} />
@@ -269,7 +252,7 @@ const CareersJinhak = observer(() => {
                   onSelect={() => setSearchSelected(true)}
                   onChange={e => setSearchText(e.target.value)}
                   onSubmit={handleSearch}
-                  onClear={handleClear}
+                  onClear={() => setSearchText('')}
                 />
               </SectionTitleAndSearch>
               <CareerSortButton sortValue={sort} onSortChange={handleSortChange} />

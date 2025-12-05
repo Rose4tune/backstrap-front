@@ -104,7 +104,7 @@ const CareersAll = observer(() => {
 
             setCareerSliceData(prev => [...prev, ...data]);
 
-            if (totalCount <= REQUEST_COUNT) {
+            if (totalCount < REQUEST_COUNT) {
               setHasMore(false);
             }
           })
